@@ -45,6 +45,24 @@ void main() {
     print("> Else running!");
   }
 
+
+//  ------------------------------------------------------------
+//  | 27. Control Flow - If Statements                         |
+//  ------------------------------------------------------------
+//  number: [type: int, value: 34]
+//  Printing type test operators...
+//  > number is string: false
+//  > number is int: true
+//  > number is bool: false
+//  > number is! bool: true
+//  #
+//  If statement #1: (number == 34)
+//  > If true, this will run!
+//  #
+//  If statement #2: (number != 34)
+//  > Else running!
+
+
   // =========================================================================
   // 28. Logical Operators
   lessonTitle = "Logical Operators";
@@ -118,6 +136,31 @@ void main() {
     print(falseStatementLesson28); // Print this
   }
 
+
+//  ------------------------------------------------------------
+//  | 28. Logical Operators                                    |
+//  ------------------------------------------------------------
+//  number: 34
+//  Statements:
+//  > True: Not a hundred!
+//  > False: Yess!
+//  #
+//  if statement: (number != 100))
+//  Not a hundred!
+//  #
+//  if statement: !(number != 100))
+//  Yess!
+//  #
+//  if statement: !(number != 100) || number <= 100)
+//  Not a hundred!
+//  #
+//  if statement: !(number != 100) || number >= 100)
+//  Yess!
+//  #
+//  if statement: !(number != 100) && number <= 100)
+//  Yess!
+
+
   // =========================================================================
   // 29. For Loops in Dart
   lessonTitle = "For Loops in Dart";
@@ -149,6 +192,38 @@ void main() {
       print("$mangoLesson29 $i");
     }
   }
+
+
+//  ------------------------------------------------------------
+//  | 29. For Loops in Dart                                    |
+//  ------------------------------------------------------------
+//  Printing for loop...
+//  Hello 0
+//  Hello 1
+//  Hello 2
+//  Hello 3
+//  Hello 4
+//  Hello 5
+//  Hello 6
+//  Hello 7
+//  Hello 8
+//  Hello 9
+//  #
+//  Printing for loop...
+//  > Condition: print only when i is even (i % 2 == 0)
+//  Hello 0
+//  Hello 2
+//  Hello 4
+//  Hello 6
+//  Hello 8
+//  #
+//  Printing for loop...
+//  > Condition: print only when i is divisible by 3 (i % 3 == 0)
+//  Mango 0
+//  Mango 3
+//  Mango 6
+//  Mango 9
+
 
   // =========================================================================
   // 30. While, Do-While and Break in Dart
@@ -209,6 +284,25 @@ void main() {
   do {
     print("Hello world");
   } while (numberLesson30 < 34);
+
+
+//  ------------------------------------------------------------
+//  | 30. While, Do-While and Break in Dart                    |
+//  ------------------------------------------------------------
+//  Printing while loop...
+//  #
+//  Printing while loop...
+//  Hello world.
+//  Hello world.
+//  Hello world.
+//  Hello world.
+//  Hello world.
+//  #
+//  Printing while loop...
+//  Hello world.
+//  #
+//  Printing do-while loop...
+//  Hello world
 
 
 }

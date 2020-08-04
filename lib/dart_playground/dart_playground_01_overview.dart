@@ -1,49 +1,13 @@
 // Section 6: Introduction to the Dart Programming Language - From Scratch
 
+// Import helper functions
+import 'dart_playground_00_helper.dart';
+
 // Main method - everything enclosed within is being called
 // - something happens
 void main() { // entry point
   int lessonCount = 0;
   String lessonTitle = "";
-
-  /// Print break lines to separate current section from previous sections.
-  ///
-  /// Called in between each section.
-  void printBreakLines({String character = "#", int numChar = 1}) {
-    print(character*numChar);
-  }
-
-  /// Print lesson title specified by [title] and update lesson count.
-  ///
-  /// Called at the beginning of every lesson.
-  int printLessonTitle(String title, {int count = 0}) {
-    String newCountString = count.toString();
-    String newTitle = "| " + newCountString + ". " + title + " |";
-    int titleLength = newTitle.length;
-
-    const maxLength = 60;
-
-    // Insert trailing spaces to the title until it reaches 60 characters.
-    if (titleLength < maxLength) {
-      int titleLengthDiff = maxLength - titleLength;
-      newTitle = newTitle.substring(0, titleLength - 1);
-      newTitle += (" " * titleLengthDiff) + "|";
-
-      titleLength = maxLength;
-    }
-
-    // Set Horizontal borders
-    String horizBorder = "-" * titleLength;
-    String titleWithBorders = "";
-
-    // Combine all lines
-    titleWithBorders += "\n" + horizBorder + "\n" + newTitle + "\n" +
-        horizBorder;
-
-    print(titleWithBorders);
-
-    return count + 1;
-  }
 
 
   // =========================================================================
@@ -231,7 +195,7 @@ void main() { // entry point
   // Final: used when we want a value/variable to always be constant
   // - never changes.
 
-  var countryLesson22 = "Jamaica";
+//  var countryLesson22 = "Jamaica";
 
   // In some cases, we need a constant value.
   //
@@ -373,7 +337,7 @@ void main() { // entry point
   // Used to look for relation between two things - comparision.
   // Helpful in control flow - true or false - decision making.
 
-  int numberLesson25 = 34;
+//  int numberLesson25 = 34;
 
   print("4 == 2: ${4 == 2}"); // returns Boolean value
 
