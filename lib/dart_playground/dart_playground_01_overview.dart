@@ -11,7 +11,7 @@ void main() { // entry point
 
 
   // =========================================================================
-  print('Hello world');
+  outputPrint('Hello world');
 
 
   // =========================================================================
@@ -22,16 +22,16 @@ void main() { // entry point
   var aLesson16 = "Darren";
   var bLesson16 = "Green";
 
-  print("a: $aLesson16, b: $bLesson16");
-  print("> a: $aLesson16");
-  print("> a + b: ${aLesson16 + bLesson16}");
+  outputPrint("a: $aLesson16, b: $bLesson16");
+  outputPrint("> a: $aLesson16");
+  outputPrint("> a + b: ${aLesson16 + bLesson16}");
 
   printBreakLines();
 
-  print("Printing for loop...");
+  outputPrint("Printing for loop...");
 
   for (int i = 0; i < 5; i++) {
-    print('Hello ${i + 1}');
+    outputPrint('Hello ${i + 1}');
   }
 
 
@@ -55,8 +55,8 @@ void main() { // entry point
   lessonTitle = "Dart - Coding Style and Naming Convention";
   lessonCount = printLessonTitle(lessonTitle, count: lessonCount);
 
-  String URL = "https://dart.dev/guides/language/effective-dart#summary-of-all-rules";
-  print("Go to [${URL}] for more information.");
+  String url = "https://dart.dev/guides/language/effective-dart#summary-of-all-rules";
+  outputPrint("Go to [$url] for more information.");
 
 
 //  ------------------------------------------------------------
@@ -70,15 +70,15 @@ void main() { // entry point
   lessonTitle = "Dart - Declaring variables - String";
   lessonCount = printLessonTitle(lessonTitle, count: lessonCount);
 
-  print("Printing string...");
-  print('Hello world');
+  outputPrint("Printing string...");
+  outputPrint('Hello world');
 
   printBreakLines();
 
   // - Variable = spot in memory. Or just a bucket to hold a value.
   var countryLesson18 = "Malaysia"; // String
-  print("Printing from generic variable...");
-  print("country (var): $countryLesson18");
+  outputPrint("Printing from generic variable...");
+  outputPrint("country (var): $countryLesson18");
 
 
 //  ------------------------------------------------------------
@@ -116,8 +116,8 @@ void main() { // entry point
   nameLesson19 = "Darren"; // valid: [name] only accepts String values.
 //  name = 1; // invalid: [name] cannot accept num values.
 
-  print("Printing from string variable...");
-  print("name (string): $nameLesson19");
+  outputPrint("Printing from string variable...");
+  outputPrint("name (string): $nameLesson19");
 
 
 //  ------------------------------------------------------------
@@ -137,20 +137,20 @@ void main() { // entry point
 
   num ageLesson20 = 13;
 //  var age = 13; // alternative
-  print("age (num): $ageLesson20");
+  outputPrint("age (num): $ageLesson20");
 
   printBreakLines();
 
   num numberLesson20 = 23;
-  print("number (num): $numberLesson20");
+  outputPrint("number (num): $numberLesson20");
 
   printBreakLines();
 
   int ageIntLesson20 = 13;
   double numberDoubleLesson20 = 23.34;
 
-  print("age (int): $ageIntLesson20");
-  print("number (double): $numberDoubleLesson20");
+  outputPrint("age (int): $ageIntLesson20");
+  outputPrint("number (double): $numberDoubleLesson20");
 
 
 //  ------------------------------------------------------------
@@ -173,8 +173,8 @@ void main() { // entry point
   bool isTrueLesson21 = true;
   bool isFalseLesson21 = false;
 
-  print("Printing isTrue: $isTrueLesson21");
-  print("Printing isFalse: $isFalseLesson21");
+  outputPrint("Printing isTrue: $isTrueLesson21");
+  outputPrint("Printing isFalse: $isFalseLesson21");
 
 
 //  ------------------------------------------------------------
@@ -202,15 +202,15 @@ void main() { // entry point
   // This value does not change over time, for example: pi.
   var piVarLesson22 = 3.14;
   piVarLesson22 = 23.89; // Valid
-  print("piVar: $piVarLesson22");
+  outputPrint("piVar: $piVarLesson22");
 
   const piConstantLesson22 = 3.14;
 //  piConstantLesson22= 34.56; // Invalid: Constant variables can't be assigned a value.
-  print("piConstant: $piConstantLesson22");
+  outputPrint("piConstant: $piConstantLesson22");
 
   final piFinalLesson22 = 3.14;
 //  piFinalLesson22= 3.56; // Invalid: Final variable [piFinal] can only be set once.
-  print("piFinal: $piFinalLesson22");
+  outputPrint("piFinal: $piFinalLesson22");
 
 
 //  ------------------------------------------------------------
@@ -231,18 +231,18 @@ void main() { // entry point
   int ageLesson23 = 45;
 
   // Print "James Bond is 45 years old."
-  print("$nameLesson23 $lastNameLesson23 is $ageLesson23 years old.");
+  outputPrint("$nameLesson23 $lastNameLesson23 is $ageLesson23 years old.");
 
   // Print "Hello there James Bond."
-  print("Hello there $nameLesson23 $lastNameLesson23.");
+  outputPrint("Hello there $nameLesson23 $lastNameLesson23.");
 
   // Print "Hello there James BOND."
-  print("Hello there $nameLesson23 ${lastNameLesson23.toUpperCase()}.");
+  outputPrint("Hello there $nameLesson23 ${lastNameLesson23.toUpperCase()}.");
 
   // Print "Hello there James Bond.toUpperCase()."
   //
   // Must add {} to access object/variable properties/methods.
-  print("Hello there $nameLesson23 $lastNameLesson23.toUpperCase().");
+  outputPrint("Hello there $nameLesson23 $lastNameLesson23.toUpperCase().");
 
 
 //  ------------------------------------------------------------
@@ -266,25 +266,25 @@ void main() { // entry point
 
   int numberLesson24 = 34;
   int numberTwoLesson24 = 2;
-  print(numberLesson24 + numberTwoLesson24);
+  outputPrint(numberLesson24 + numberTwoLesson24);
 
-  print("number: $numberLesson24, numberTwo: $numberTwoLesson24");
-  print("> number + numberTwo: ${numberLesson24 + numberTwoLesson24}");
+  outputPrint("number: $numberLesson24, numberTwo: $numberTwoLesson24");
+  outputPrint("> number + numberTwo: ${numberLesson24 + numberTwoLesson24}");
 
   printBreakLines();
 
-  print("number: $numberLesson24, numberTwo: $numberTwoLesson24");
-  print("Arithmetic operation: number <operator> numberTwo");
+  outputPrint("number: $numberLesson24, numberTwo: $numberTwoLesson24");
+  outputPrint("Arithmetic operation: number <operator> numberTwo");
 
   var resultLesson24 = numberLesson24 + numberTwoLesson24;
   var resultMinusLesson24 = numberLesson24 - numberTwoLesson24;
   var resultTimesLesson24 = numberLesson24 * numberTwoLesson24;
   var resultDivideLesson24 = numberLesson24 / numberTwoLesson24;
 
-  print("> Plus operator (+): $resultLesson24");
-  print("> Minus operator (-): $resultMinusLesson24");
-  print("> Times operator (*): $resultTimesLesson24");
-  print("> Divide operator (/): $resultDivideLesson24");
+  outputPrint("> Plus operator (+): $resultLesson24");
+  outputPrint("> Minus operator (-): $resultMinusLesson24");
+  outputPrint("> Times operator (*): $resultTimesLesson24");
+  outputPrint("> Divide operator (/): $resultDivideLesson24");
 
   // Note: Division between two integer values returns a double value.
 
@@ -293,15 +293,15 @@ void main() { // entry point
   double piLesson24 = 3.14;
   double gravityLesson24 = 9.8;
 
-  print("pi: 3.14, gravity = 9.8");
-  print("> pi + gravity: ${piLesson24 + gravityLesson24}");
-  print("> pi - gravity: ${piLesson24 - gravityLesson24}");
+  outputPrint("pi: 3.14, gravity = 9.8");
+  outputPrint("> pi + gravity: ${piLesson24 + gravityLesson24}");
+  outputPrint("> pi - gravity: ${piLesson24 - gravityLesson24}");
 
   printBreakLines();
 
-  print("Remainder:");
-  print("4%2: ${4%2}");
-  print("4%3: ${4%3}");
+  outputPrint("Remainder:");
+  outputPrint("4%2: ${4%2}");
+  outputPrint("4%3: ${4%3}");
 
 
 //  ------------------------------------------------------------
@@ -339,21 +339,21 @@ void main() { // entry point
 
 //  int numberLesson25 = 34;
 
-  print("4 == 2: ${4 == 2}"); // returns Boolean value
+  outputPrint("4 == 2: ${4 == 2}"); // returns Boolean value
 
   printBreakLines();
 
   double piLesson25 = 3.14;
   double gravityLesson25 = 9.8;
 
-  print("pi: $piLesson25, gravity: $gravityLesson25");
-  print("> pi == gravity: ${piLesson25 == gravityLesson25}");
-  print("> pi == pi: ${piLesson25 == piLesson25}");
-  print("> pi != pi: ${piLesson25 != piLesson25}");
-  print("> pi > gravity: ${piLesson25 > gravityLesson25}");
-  print("> pi < gravity: ${piLesson25 < gravityLesson25}");
-  print("> pi >= gravity: ${piLesson25 >= gravityLesson25}");
-  print("> pi <= gravity: ${piLesson25 <= gravityLesson25}");
+  outputPrint("pi: $piLesson25, gravity: $gravityLesson25");
+  outputPrint("> pi == gravity: ${piLesson25 == gravityLesson25}");
+  outputPrint("> pi == pi: ${piLesson25 == piLesson25}");
+  outputPrint("> pi != pi: ${piLesson25 != piLesson25}");
+  outputPrint("> pi > gravity: ${piLesson25 > gravityLesson25}");
+  outputPrint("> pi < gravity: ${piLesson25 < gravityLesson25}");
+  outputPrint("> pi >= gravity: ${piLesson25 >= gravityLesson25}");
+  outputPrint("> pi <= gravity: ${piLesson25 <= gravityLesson25}");
 
 
 //  ------------------------------------------------------------
@@ -370,5 +370,7 @@ void main() { // entry point
 //  > pi >= gravity: false
 //  > pi <= gravity: true
 
-
+  // =========================================================================
+  // Create output file.
+  createOutputFile(filename: "dart_playground_output_01_overview");
 }

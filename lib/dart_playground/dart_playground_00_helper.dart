@@ -1,10 +1,35 @@
+// Helper classes.
+
+import 'dart:io';
+import 'package:intl/intl.dart';
+
+class OutputText {
+  static String _appendText = "";
+
+  String get appendText {
+    return _appendText;
+  }
+
+  void appendNewText(Object object) {
+    _appendText += "$object\n";
+  }
+}
+
 // Helper functions.
+/// Define new print function which stores all the print statements to write
+/// into an output file.
+void outputPrint(Object object) {
+  print(object);
+  OutputText().appendNewText(object);
+}
+
 
 /// Print break lines to separate current section from previous sections.
 ///
 /// Called in between each section.
 void printBreakLines({String character = "#", int numChar = 1}) {
-  print(character * numChar);
+//  print(character * numChar);
+  outputPrint(character * numChar);
 }
 
 /// Print lesson title specified by [title] and update lesson count.
@@ -35,7 +60,23 @@ int printLessonTitle(String title, {int count = 0}) {
   // Combine all lines
   titleWithBorders += "\n" + horizBorder + "\n" + newTitle + "\n" + horizBorder;
 
-  print(titleWithBorders);
+//  print(titleWithBorders);
+  outputPrint(titleWithBorders);
 
   return count + 1;
+}
+
+
+/// Define new print function which stores all the print statements to write
+/// into an output file.
+void createOutputFile({String filename = "filename.txt"}) {
+  final DateFormat formatter = DateFormat('yyyy-MM-dd hh:mm:ss');
+  final String formatted = formatter.format(DateTime.now());
+
+  outputPrint("\n(Last updated: $formatted)");
+
+  String currentFolderPath = "lib//dart_playground";
+  File myFile = new File("$currentFolderPath//$filename.txt");
+
+  myFile.writeAsString(OutputText().appendText);;
 }

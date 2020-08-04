@@ -17,32 +17,32 @@ void main() {
   // Helpful in checking variable type on runtime.
 
   int numberLesson27 = 34;
-  print("number: [type: ${numberLesson27.runtimeType}, "
+  outputPrint("number: [type: ${numberLesson27.runtimeType}, "
       "value: $numberLesson27]");
 
-  print("Printing type test operators...");
-  print("> number is string: ${numberLesson27 is String}"); // Boolean
-  print("> number is int: ${numberLesson27 is int}"); // Boolean
-  print("> number is bool: ${numberLesson27 is bool}"); // Boolean
-  print("> number is! bool: ${numberLesson27 is! bool}"); // Boolean
+  outputPrint("Printing type test operators...");
+  outputPrint("> number is string: ${numberLesson27 is String}"); // Boolean
+  outputPrint("> number is int: ${numberLesson27 is int}"); // Boolean
+  outputPrint("> number is bool: ${numberLesson27 is bool}"); // Boolean
+  outputPrint("> number is! bool: ${numberLesson27 is! bool}"); // Boolean
 
   printBreakLines();
 
   // If statement
-  print("If statement #1: (number == 34)");
+  outputPrint("If statement #1: (number == 34)");
   if (numberLesson27 == 34) {
-    print("> If true, this will run!");
+    outputPrint("> If true, this will run!");
   } else {
-    print("> Else running!");
+    outputPrint("> Else running!");
   }
 
   printBreakLines();
 
-  print("If statement #2: (number != 34)");
+  outputPrint("If statement #2: (number != 34)");
   if (numberLesson27 != 34) {
-    print("> If true, this will run!");
+    outputPrint("> If true, this will run!");
   } else {
-    print("> Else running!");
+    outputPrint("> Else running!");
   }
 
 
@@ -82,58 +82,58 @@ void main() {
   String trueStatementLesson28 = "Not a hundred!";
   String falseStatementLesson28 = "Yess!";
 
-  print("number: $numberLesson28");
-  print("Statements:");
-  print("> True: $trueStatementLesson28");
-  print("> False: $falseStatementLesson28");
+  outputPrint("number: $numberLesson28");
+  outputPrint("Statements:");
+  outputPrint("> True: $trueStatementLesson28");
+  outputPrint("> False: $falseStatementLesson28");
 
   printBreakLines();
 
-  print("if statement: (number != 100))");
+  outputPrint("if statement: (number != 100))");
   if (numberLesson28 != 100) {
-    print(trueStatementLesson28); // Print this
+    outputPrint(trueStatementLesson28); // Print this
   } else {
-    print(falseStatementLesson28);
+    outputPrint(falseStatementLesson28);
   }
 
   printBreakLines();
 
   // !true => false
-  print("if statement: !(number != 100))");
+  outputPrint("if statement: !(number != 100))");
   if (!(numberLesson28 != 100)) {
-    print(trueStatementLesson28);
+    outputPrint(trueStatementLesson28);
   } else {
-    print(falseStatementLesson28); // Print this
+    outputPrint(falseStatementLesson28); // Print this
   }
 
   printBreakLines();
 
   // false OR true => true
-  print("if statement: !(number != 100) || number <= 100)");
+  outputPrint("if statement: !(number != 100) || number <= 100)");
   if (!(numberLesson28 != 100) || numberLesson28 <= 100) {
-    print(trueStatementLesson28); // Print this
+    outputPrint(trueStatementLesson28); // Print this
   } else {
-    print(falseStatementLesson28);
+    outputPrint(falseStatementLesson28);
   }
 
   printBreakLines();
 
   // false OR false => false
-  print("if statement: !(number != 100) || number >= 100)");
+  outputPrint("if statement: !(number != 100) || number >= 100)");
   if (!(numberLesson28 != 100) || numberLesson28 >= 100) {
-    print(trueStatementLesson28);
+    outputPrint(trueStatementLesson28);
   } else {
-    print(falseStatementLesson28); // Print this
+    outputPrint(falseStatementLesson28); // Print this
   }
 
   printBreakLines();
 
   // false AND true => false
-  print("if statement: !(number != 100) && number <= 100)");
+  outputPrint("if statement: !(number != 100) && number <= 100)");
   if (!(numberLesson28 != 100) && numberLesson28 <= 100) {
-    print(trueStatementLesson28);
+    outputPrint(trueStatementLesson28);
   } else {
-    print(falseStatementLesson28); // Print this
+    outputPrint(falseStatementLesson28); // Print this
   }
 
 
@@ -167,29 +167,29 @@ void main() {
   lessonCount = printLessonTitle(lessonTitle, count: lessonCount);
 
   // for loop
-  print("Printing for loop...");
+  outputPrint("Printing for loop...");
   for (var i = 0; i < 10; i++) {
-    print("Hello $i");
+    outputPrint("Hello $i");
   }
 
   printBreakLines();
 
-  print("Printing for loop...");
-  print("> Condition: print only when i is even (i % 2 == 0)");
+  outputPrint("Printing for loop...");
+  outputPrint("> Condition: print only when i is even (i % 2 == 0)");
   for (var i = 0; i < 10; i++) {
     if (i % 2 == 0) {
-      print("Hello $i");
+      outputPrint("Hello $i");
     }
   }
 
   printBreakLines();
 
-  print("Printing for loop...");
-  print("> Condition: print only when i is divisible by 3 (i % 3 == 0)");
+  outputPrint("Printing for loop...");
+  outputPrint("> Condition: print only when i is divisible by 3 (i % 3 == 0)");
   var mangoLesson29 = "Mango";
   for (var i = 0; i < 10; i++) {
     if (i % 3 == 0) {
-      print("$mangoLesson29 $i");
+      outputPrint("$mangoLesson29 $i");
     }
   }
 
@@ -238,18 +238,18 @@ void main() {
   int numberLesson30 = 34;
 
   // While statement is not executed, condition is not met.
-  print("Printing while loop...");
+  outputPrint("Printing while loop...");
   while(numberLesson30 < 34) {
-    print("Hello world.");
+    outputPrint("Hello world.");
   }
 
   printBreakLines();
 
   // While statement is always executed, infinite loop!
   // - Should prevent this!
-//  print("Printing while loop...");
+//  outputPrint("Printing while loop...");
 //  while(true) {
-//    print("Going...");
+//    outputPrint("Going...");
 //  }
 //
 //  printBreakLines();
@@ -258,10 +258,10 @@ void main() {
   // Method 1: Update the variable for condition checking.
   // While statement is executed, but eventually stop when condition is
   // no longer met.
-  print("Printing while loop...");
+  outputPrint("Printing while loop...");
   int conditionLesson30 = 0;
   while(conditionLesson30 < 5) {
-    print("Hello world.");
+    outputPrint("Hello world.");
     conditionLesson30++;
   }
 
@@ -269,9 +269,9 @@ void main() {
 
   // Method 2: Using break statement
   // While statement is executed, but eventually stop by break statement.
-  print("Printing while loop...");
+  outputPrint("Printing while loop...");
   while(true) {
-    print("Hello world.");
+    outputPrint("Hello world.");
     break;
 
     // Anything after the break statement is considered as Dead code.
@@ -280,9 +280,9 @@ void main() {
   printBreakLines();
 
   // Do-while loop is always executed once without checking the condition.
-  print("Printing do-while loop...");
+  outputPrint("Printing do-while loop...");
   do {
-    print("Hello world");
+    outputPrint("Hello world");
   } while (numberLesson30 < 34);
 
 
@@ -305,4 +305,7 @@ void main() {
 //  Hello world
 
 
+  // =========================================================================
+  // Create output file.
+  createOutputFile(filename: "dart_playground_output_02_control_flow_functions");
 }
