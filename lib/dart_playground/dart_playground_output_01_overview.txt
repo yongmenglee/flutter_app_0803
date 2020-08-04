@@ -1,0 +1,104 @@
+Hello world
+
+------------------------------------------------------------
+| 16. Intro to Dart and Dart Pad - Online Editor           |
+------------------------------------------------------------
+a: Darren, b: Green
+> a: Darren
+> a + b: DarrenGreen
+#
+Printing for loop...
+Hello 1
+Hello 2
+Hello 3
+Hello 4
+Hello 5
+
+------------------------------------------------------------
+| 17. Dart - Coding Style and Naming Convention            |
+------------------------------------------------------------
+Go to [https://dart.dev/guides/language/effective-dart#summary-of-all-rules] for more information.
+
+------------------------------------------------------------
+| 18. Dart - Declaring variables - String                  |
+------------------------------------------------------------
+Printing string...
+Hello world
+#
+Printing from generic variable...
+country (var): Malaysia
+
+------------------------------------------------------------
+| 19. Dart Types and Assigning Types to Variables          |
+------------------------------------------------------------
+Printing from string variable...
+name (string): Darren
+
+------------------------------------------------------------
+| 20. Dart - Numbers - Integers and Doubles                |
+------------------------------------------------------------
+age (num): 13
+#
+number (num): 23
+#
+age (int): 13
+number (double): 23.34
+
+------------------------------------------------------------
+| 21. Dart - Booleans                                      |
+------------------------------------------------------------
+Printing isTrue: true
+Printing isFalse: false
+
+------------------------------------------------------------
+| 22. Dart - Const and Final Keywords                      |
+------------------------------------------------------------
+piVar: 23.89
+piConstant: 3.14
+piFinal: 3.14
+
+------------------------------------------------------------
+| 23. Dart - Concatenation                                 |
+------------------------------------------------------------
+James Bond is 45 years old.
+Hello there James Bond.
+Hello there James BOND.
+Hello there James Bond.toUpperCase().
+
+------------------------------------------------------------
+| 24. Dart - Arithmetic                                    |
+------------------------------------------------------------
+36
+number: 34, numberTwo: 2
+> number + numberTwo: 36
+#
+number: 34, numberTwo: 2
+Arithmetic operation: number <operator> numberTwo
+> Plus operator (+): 36
+> Minus operator (-): 32
+> Times operator (*): 68
+> Divide operator (/): 17.0
+#
+pi: 3.14, gravity = 9.8
+> pi + gravity: 12.940000000000001
+> pi - gravity: -6.66
+#
+Remainder:
+4%2: 0
+4%3: 1
+
+------------------------------------------------------------
+| 25. Equality and Relational Operators in Dart            |
+------------------------------------------------------------
+4 == 2: false
+#
+pi: 3.14, gravity: 9.8
+> pi == gravity: false
+> pi == pi: true
+> pi != pi: false
+> pi > gravity: false
+> pi < gravity: true
+> pi >= gravity: false
+> pi <= gravity: true
+
+(Last updated: 2020-08-04 03:54:27)

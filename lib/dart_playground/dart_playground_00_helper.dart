@@ -1,8 +1,11 @@
-// Helper classes.
+// Define helper classes and functions used in the dart playgrounds.
 
 import 'dart:io';
 import 'package:intl/intl.dart';
 
+// Helper classes.
+// ---
+/// An object to store all the print statements in dart playground.
 class OutputText {
   static String _appendText = "";
 
@@ -16,6 +19,7 @@ class OutputText {
 }
 
 // Helper functions.
+// ---
 /// Define new print function which stores all the print statements to write
 /// into an output file.
 void outputPrint(Object object) {
@@ -55,10 +59,10 @@ int printLessonTitle(String title, {int count = 0}) {
 
   // Set Horizontal borders
   String horizBorder = "-" * maxLength;
-  String titleWithBorders = "";
 
   // Combine all lines
-  titleWithBorders += "\n" + horizBorder + "\n" + newTitle + "\n" + horizBorder;
+  String titleWithBorders = "\n" + horizBorder + "\n" + newTitle + "\n"
+      + horizBorder;
 
 //  print(titleWithBorders);
   outputPrint(titleWithBorders);
@@ -66,10 +70,8 @@ int printLessonTitle(String title, {int count = 0}) {
   return count + 1;
 }
 
-
-/// Define new print function which stores all the print statements to write
-/// into an output file.
-void createOutputFile({String filename = "filename.txt"}) {
+/// Save all print statements into an output file.
+void createOutputFile({String filename = "filename"}) {
   final DateFormat formatter = DateFormat('yyyy-MM-dd hh:mm:ss');
   final String formatted = formatter.format(DateTime.now());
 
@@ -78,5 +80,5 @@ void createOutputFile({String filename = "filename.txt"}) {
   String currentFolderPath = "lib//dart_playground";
   File myFile = new File("$currentFolderPath//$filename.txt");
 
-  myFile.writeAsString(OutputText().appendText);;
+  myFile.writeAsString(OutputText().appendText);
 }
