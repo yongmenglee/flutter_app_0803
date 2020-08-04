@@ -72,7 +72,7 @@ int printLessonTitle(String title, {int count = 0}) {
 
 /// Save all print statements into an output file.
 void createOutputFile({String filename = "filename"}) {
-  final DateFormat formatter = DateFormat('yyyy-MM-dd hh:mm:ss');
+  final DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm:ss');
   final String formatted = formatter.format(DateTime.now());
 
   outputPrint("\n(Last updated: $formatted)");

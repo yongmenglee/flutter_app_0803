@@ -5,14 +5,13 @@ import 'dart_playground_00_helper.dart';
 
 // Main method - everything enclosed within is being called
 // - something happens
-void main() { // entry point
+void main() {
+  // entry point
   int lessonCount = 0;
   String lessonTitle = "";
 
-
   // =========================================================================
   outputPrint('Hello world');
-
 
   // =========================================================================
   // 16. Intro to Dart and Dart Pad - Online Editor
@@ -34,7 +33,6 @@ void main() { // entry point
     outputPrint('Hello ${i + 1}');
   }
 
-
 //  ------------------------------------------------------------
 //  | 16. Intro to Dart and Dart Pad - Online Editor           |
 //  ------------------------------------------------------------
@@ -49,21 +47,19 @@ void main() { // entry point
 //  Hello 4
 //  Hello 5
 
-
   // =========================================================================
   // 17. Dart - Coding Style and Naming Convention
   lessonTitle = "Dart - Coding Style and Naming Convention";
   lessonCount = printLessonTitle(lessonTitle, count: lessonCount);
 
-  String url = "https://dart.dev/guides/language/effective-dart#summary-of-all-rules";
+  String url =
+      "https://dart.dev/guides/language/effective-dart#summary-of-all-rules";
   outputPrint("Go to [$url] for more information.");
-
 
 //  ------------------------------------------------------------
 //  | 17. Dart - Coding Style and Naming Convention            |
 //  ------------------------------------------------------------
 //  Go to [https://dart.dev/guides/language/effective-dart#summary-of-all-rules] for more information.
-
 
   // =========================================================================
   // 18. Dart - Declaring variables - String
@@ -80,7 +76,6 @@ void main() { // entry point
   outputPrint("Printing from generic variable...");
   outputPrint("country (var): $countryLesson18");
 
-
 //  ------------------------------------------------------------
 //  | 18. Dart - Declaring variables - String                  |
 //  ------------------------------------------------------------
@@ -89,7 +84,6 @@ void main() { // entry point
 //  #
 //  Printing from generic variable...
 //  country (var): Malaysia
-
 
   // =========================================================================
   // 19. Dart Types and Assigning Types to Variables
@@ -119,13 +113,11 @@ void main() { // entry point
   outputPrint("Printing from string variable...");
   outputPrint("name (string): $nameLesson19");
 
-
 //  ------------------------------------------------------------
 //  | 19. Dart Types and Assigning Types to Variables          |
 //  ------------------------------------------------------------
 //  Printing from string variable...
 //  name (string): Darren
-
 
   // =========================================================================
   // 20. Dart - Numbers - Integers and Doubles
@@ -152,7 +144,6 @@ void main() { // entry point
   outputPrint("age (int): $ageIntLesson20");
   outputPrint("number (double): $numberDoubleLesson20");
 
-
 //  ------------------------------------------------------------
 //  | 20. Dart - Numbers - Integers and Doubles                |
 //  ------------------------------------------------------------
@@ -162,7 +153,6 @@ void main() { // entry point
 //  #
 //  age (int): 13
 //  number (double): 23.34
-
 
   // =========================================================================
   // 21. Dart - Booleans
@@ -176,13 +166,11 @@ void main() { // entry point
   outputPrint("Printing isTrue: $isTrueLesson21");
   outputPrint("Printing isFalse: $isFalseLesson21");
 
-
 //  ------------------------------------------------------------
 //  | 21. Dart - Booleans                                      |
 //  ------------------------------------------------------------
 //  Printing isTrue: true
 //  Printing isFalse: false
-
 
   // =========================================================================
   // 22. Dart - Const and Final Keywords
@@ -212,14 +200,12 @@ void main() { // entry point
 //  piFinalLesson22= 3.56; // Invalid: Final variable [piFinal] can only be set once.
   outputPrint("piFinal: $piFinalLesson22");
 
-
 //  ------------------------------------------------------------
 //  | 22. Dart - Const and Final Keywords                      |
 //  ------------------------------------------------------------
 //  piVar: 23.89
 //  piConstant: 3.14
 //  piFinal: 3.14
-
 
   // =========================================================================
   // 23. Dart - Concatenation
@@ -244,7 +230,6 @@ void main() { // entry point
   // Must add {} to access object/variable properties/methods.
   outputPrint("Hello there $nameLesson23 $lastNameLesson23.toUpperCase().");
 
-
 //  ------------------------------------------------------------
 //  | 23. Dart - Concatenation                                 |
 //  ------------------------------------------------------------
@@ -252,7 +237,6 @@ void main() { // entry point
 //  Hello there James Bond.
 //  Hello there James BOND.
 //  Hello there James Bond.toUpperCase().
-
 
   // =========================================================================
   // 24. Dart - Arithmetic
@@ -300,9 +284,8 @@ void main() { // entry point
   printBreakLines();
 
   outputPrint("Remainder:");
-  outputPrint("4%2: ${4%2}");
-  outputPrint("4%3: ${4%3}");
-
+  outputPrint("4%2: ${4 % 2}");
+  outputPrint("4%3: ${4 % 3}");
 
 //  ------------------------------------------------------------
 //  | 24. Dart - Arithmetic                                    |
@@ -325,7 +308,6 @@ void main() { // entry point
 //  Remainder:
 //  4%2: 0
 //  4%3: 1
-
 
   // =========================================================================
   // 25. Equality and Relational Operators in Dart
@@ -354,7 +336,6 @@ void main() { // entry point
   outputPrint("> pi < gravity: ${piLesson25 < gravityLesson25}");
   outputPrint("> pi >= gravity: ${piLesson25 >= gravityLesson25}");
   outputPrint("> pi <= gravity: ${piLesson25 <= gravityLesson25}");
-
 
 //  ------------------------------------------------------------
 //  | 25. Equality and Relational Operators in Dart            |

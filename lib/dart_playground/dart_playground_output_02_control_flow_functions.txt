@@ -86,4 +86,74 @@ Hello world.
 Printing do-while loop...
 Hello world
 
-(Last updated: 2020-08-04 04:06:19)
+------------------------------------------------------------
+| 31. Switch Cases                                         |
+------------------------------------------------------------
+age: 18
+Printing switch statement...
+Default 18
+
+------------------------------------------------------------
+| 32. Introduction to Function in Dart                     |
+------------------------------------------------------------
+Hello functions!
+Minho
+Hooray!
+
+------------------------------------------------------------
+| 33. Function Return Types - String-Int-Booleans          |
+------------------------------------------------------------
+Hello from showName!
+Hello from showName!
+Hello Hello from showName!
+Hello functions!
+Minho
+Hooray!
+Hello null
+Hello Hello from showName! 34
+Hello Hello from showName! 34
+Is it true? true
+
+------------------------------------------------------------
+| 34. Dart - Using the => Operator for Returning Expres... |
+------------------------------------------------------------
+Printing function with => opeator...
+getName(): James Bond
+showAgeNow(): 34
+
+------------------------------------------------------------
+| 35. Arguments and Functions in Dart                      |
+------------------------------------------------------------
+Printing from function with one argument...
+Hello Minho
+Hello James Bond
+Hello George
+#
+Printing from minimalized function with one argument...
+Hello George
+#
+Printing from minimalized function with multiple argument...
+Hello George Kealy 74 years old.
+
+------------------------------------------------------------
+| 36. Optional Parameters in Dart                          |
+------------------------------------------------------------
+Age not specified...
+Nina Hey
+#
+Age specified...
+Nina Hey is 34 years old.
+
+------------------------------------------------------------
+| 37. Lexical Scope in Dart                                |
+------------------------------------------------------------
+> Current level: main
+Outside var
+> Current level: insideFunction
+Outside var
+Bond
+> Current level: innerFunction
+Outside var
+Bond
+
+(Last updated: 2020-08-04 18:28:59)
