@@ -1,0 +1,63 @@
+
+------------------------------------------------------------
+| 40. Introduction to Classes and Objects                  |
+------------------------------------------------------------
+General concepts about OOP...
+
+------------------------------------------------------------
+| 41. Introduction to Class Creation and Instance Varia... |
+------------------------------------------------------------
+mic: Instance of 'MicrophoneLesson41'
+mic.name: Blue Yeti
+mic.model (initialized): null
+#
+mic.model (updated): 1345
+
+------------------------------------------------------------
+| 42. Adding Methods to Classes                            |
+------------------------------------------------------------
+1345
+#
+Calling class methods...
+Blue Yeti is on!
+Blue Yeti is turned off!
+Blue Yeti with color: Silver Grey volume is up!
+#
+Printing return values from class methods...
+true
+1345
+
+------------------------------------------------------------
+| 43. Introduction to Constructors - Part 1                |
+------------------------------------------------------------
+1345
+#
+Calling class methods...
+Blue Yeti is on!
+Blue Yeti is turned off!
+Blue Yeti with color: Silvey Gray volume is up!
+#
+Printing return values from class methods...
+true
+1345
+#
+Printing overwritten property: model...
+9848651468
+
+------------------------------------------------------------
+| 44. Named and Suger Syntactic Constructors - Part 2      |
+------------------------------------------------------------
+Printing object properties from class with named constructor...
+Blue Yeti 2nd Edition
+67
+
+------------------------------------------------------------
+| 45. Setter and Getter                                    |
+------------------------------------------------------------
+Before setter and getter...
+Blue Yeti
+#
+After setter and getter...
+New Name
+
+(Last updated: 2020-08-05 18:38:50)
