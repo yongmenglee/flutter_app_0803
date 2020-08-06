@@ -3,6 +3,7 @@
 // Import helper functions
 import 'dart_playground_00_helper.dart';
 
+//region Defining Abstract Classes
 abstract class Profession {
   String profession;
   void showProfession();
@@ -19,10 +20,11 @@ abstract class SayHello {
 abstract class Elevation {
   num elevation;
 }
+//endregion
 
 // ---------------------------------------------------------------------------
 
-// Lesson 48
+// region Lesson 48 - Defining Classes
 class PersonLesson48 {
   String name,
       lastName,
@@ -46,10 +48,11 @@ class MinhoLesson48 extends PersonLesson48 implements PlayGuitar {
 }
 
 // Note: "implements" concept is similar to "delegate" in Swift.
+// endregion
 
 // ---------------------------------------------------------------------------
 
-// Lesson 49
+// region Lesson 49 - Defining Classes
 class PersonLesson49 extends PersonLesson48 implements SayHello {
   @override
   void sayHello() => outputPrint("Hello!");
@@ -74,10 +77,11 @@ class MinhoLesson49 extends PersonLesson49 implements PlayGuitar {
   @override
   void showNationality() => outputPrint("Nationality: South Korean");
 }
+//endregion
 
 // ---------------------------------------------------------------------------
 
-// Lesson 50
+// region Lesson 50 - Defining Classes
 class LocationLesson50 {
   num lat, lng; // Instance variables/member fields
 
@@ -104,19 +108,21 @@ class ElevatedLocationLesson50 extends LocationLesson50 implements Elevation {
       : super.create(lat, lng);
 }
 
+// endregion
+
 // ---------------------------------------------------------------------------
 
-// Lesson 51
+// region Lesson 51 - Defining Classes
 class ElevatedLocationLesson51 extends LocationLesson50 implements Elevation {
   // Attribute
   num elevation;
 
+  // Setter
+  set setElevation(num value) => this.elevation = value;
+
   // Constructor
   ElevatedLocationLesson51([num lat, num lng, this.elevation])
       : super.create(lat, lng);
-
-  // Setter
-  set setElevation(num value) => this.elevation = value;
 
   // Overriding methods
   @override
@@ -138,6 +144,8 @@ class ElevatedLocationLesson51 extends LocationLesson50 implements Elevation {
   }
 }
 
+// endregion
+
 // ---------------------------------------------------------------------------
 
 void main() {
@@ -145,7 +153,7 @@ void main() {
   String lessonTitle = "";
 
   // =========================================================================
-  // 47. Introduction to Inheritance with Dart
+  // region 47. Introduction to Inheritance with Dart
   lessonTitle = "Introduction to Inheritance with Dart";
   lessonCount = printLessonTitle(lessonTitle, count: 47);
 
@@ -185,8 +193,10 @@ void main() {
 //  ------------------------------------------------------------
 //  General concepts about inheritance in OOP...
 
+  // endregion
+
   // =========================================================================
-  // 48. Creating Classes and Inheritance Tree
+  // region 48. Creating Classes and Inheritance Tree
   lessonTitle = "Creating Classes and Inheritance Tree";
   lessonCount = printLessonTitle(lessonTitle, count: lessonCount);
 
@@ -231,8 +241,10 @@ void main() {
 //  Minho
 //  32
 
+  // endregion
+
   // =========================================================================
-  // 49. Override Methods
+  // region 49. Override Methods
   lessonTitle = "Override Methods";
   lessonCount = printLessonTitle(lessonTitle, count: lessonCount);
 
@@ -259,8 +271,10 @@ void main() {
 //  Annyeong!
 //  Nationality: South Korean
 
+  // endregion
+
   // =========================================================================
-  // 50. Inheriting Classes with Constructors
+  // region 50. Inheriting Classes with Constructors
   lessonTitle = "Inheriting Classes with Constructors";
   lessonCount = printLessonTitle(lessonTitle, count: lessonCount);
 
@@ -273,8 +287,10 @@ void main() {
 //  ------------------------------------------------------------
 //  Location = 23.89, -234.98, 90
 
+  // endregion
+
   // =========================================================================
-  // 51. The toString() Method - Override
+  // region 51. The toString() Method - Override
   lessonTitle = "The toString() Method - Override";
   lessonCount = printLessonTitle(lessonTitle, count: lessonCount);
 
@@ -302,6 +318,8 @@ void main() {
 //  #
 //  > Override toString()...
 //  23.89, -234.98, 90
+
+  // endregion
 
   // =========================================================================
   // Create output file.

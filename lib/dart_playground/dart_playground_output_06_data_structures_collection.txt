@@ -1,0 +1,59 @@
+
+------------------------------------------------------------
+| 56. Introduction to Collections                          |
+------------------------------------------------------------
+General concepts about collections in Dart...
+
+------------------------------------------------------------
+| 57. Creating Lists and Iterating through Them            |
+------------------------------------------------------------
+First item: 10
+Length (# of items): 6
+Last item: 56
+#
+List iteration using for loop...
+> Index 0 contains 10.
+> Index 1 contains 2.
+> Index 2 contains 13.
+> Index 3 contains 24.
+> Index 4 contains 10.
+> Index 5 contains 56.
+#
+List iteration using foreach...
+> Index 0 contains 10. 10 is even.
+> Index 1 contains 2. 2 is even.
+> Index 2 contains 13. 13 is odd.
+> Index 3 contains 24. 24 is even.
+> Index 4 contains 10. 10 is even.
+> Index 5 contains 56. 56 is even.
+
+------------------------------------------------------------
+| 58. Creating a List with a Person Type Object            |
+------------------------------------------------------------
+Minho
+Kwang Soo
+#
+James
+Sheila
+Gloria
+Gina
+
+------------------------------------------------------------
+| 59. Introduction to Maps                                 |
+------------------------------------------------------------
+The first runner-up is George
+#
+first
+second
+third
+Prize #1 goes to Apollo.
+Prize #2 goes to Something.
+Prize #3 goes to Another.
+Key: Winter, value: 3
+Key: Autumn, value: 1
+Key: Spring, value: 4
+#
+(first, second, third)
+(Bill, George, Bond)
+
+(Last updated: 2020-08-06 17:29:33)

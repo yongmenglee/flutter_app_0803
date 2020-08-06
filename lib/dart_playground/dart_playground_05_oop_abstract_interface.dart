@@ -3,6 +3,7 @@
 // Import helper functions
 import 'dart_playground_00_helper.dart';
 
+//region Abstract Classes
 // Abstract class (Animal) is just an idea
 abstract class AnimalLesson54 {
   // abstract class has abstract methods - mould, not concrete.
@@ -18,7 +19,9 @@ abstract class IsFunnyLesson54 {
   // abstract class
   void makePeopleLaugh();
 }
+//endregion
 
+//region Concrete Classes
 // Person
 // ---
 class PersonLesson54 implements AnimalLesson54 {
@@ -45,15 +48,15 @@ class ComedianLesson54 extends PersonLesson54 implements IsFunnyLesson54 {
 // ---
 class TVShowLesson54 implements IsFunnyLesson54 {
   String name;
+  String get getName => this.name;
 
   TVShowLesson54([this.name]);
-
-  String get getName => this.name;
 
   @override
   void makePeopleLaugh() =>
       outputPrint("${this.name} is funny and makes people laugh!");
 }
+//endregion
 
 // ---------------------------------------------------------------------------
 
@@ -62,7 +65,7 @@ void main() {
   String lessonTitle = "";
 
   // =========================================================================
-  // 53. Introduction to Abstract and Interface
+  //region 53. Introduction to Abstract and Interface
   lessonTitle = "Introduction to Abstract and Interface";
   lessonCount = printLessonTitle(lessonTitle, count: 53);
 
@@ -113,8 +116,10 @@ void main() {
 
   outputPrint("General concepts about interface and abstractions in OOP...");
 
+  //endregion
+
   // =========================================================================
-  // 54. Abstract and Interface Classes in Dart - Creation
+  //region 54. Abstract and Interface Classes in Dart - Creation
   lessonTitle = "Abstract and Interface Classes in Dart - Creation";
   lessonCount = printLessonTitle(lessonTitle, count: lessonCount);
 
@@ -156,6 +161,8 @@ void main() {
 //  #
 //  Running Man is a popular TV show.
 //  Running Man is funny and makes people laugh!
+
+  //endregion
 
   // =========================================================================
   // Create output file.
