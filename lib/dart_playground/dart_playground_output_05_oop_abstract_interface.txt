@@ -1,0 +1,22 @@
+
+------------------------------------------------------------
+| 53. Introduction to Abstract and Interface               |
+------------------------------------------------------------
+General concepts about interface and abstractions in OOP...
+
+------------------------------------------------------------
+| 54. Abstract and Interface Classes in Dart - Creation    |
+------------------------------------------------------------
+Lisa, from Thailand, is a singer and a great dancer.
+Lisa is breathing through nostrils!
+Lisa is shouting!
+#
+Kwang Soo, from South Korea, is a comedian.
+Kwang Soo is breathing through nostrils!
+Kwang Soo is shouting!
+Kwang Soo makes people laugh!
+#
+Running Man is a popular TV show.
+Running Man is funny and makes people laugh!
+
+(Last updated: 2020-08-06 15:08:37)

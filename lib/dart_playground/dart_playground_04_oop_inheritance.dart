@@ -5,7 +5,7 @@ import 'dart_playground_00_helper.dart';
 
 abstract class Profession {
   String profession;
-  void showProfession() {}
+  void showProfession();
 }
 
 abstract class PlayGuitar {
@@ -13,7 +13,7 @@ abstract class PlayGuitar {
 }
 
 abstract class SayHello {
-  void sayHello() {}
+  void sayHello();
 }
 
 abstract class Elevation {
