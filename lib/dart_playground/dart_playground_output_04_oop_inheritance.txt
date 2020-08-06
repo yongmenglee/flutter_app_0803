@@ -1,0 +1,48 @@
+
+------------------------------------------------------------
+| 47. Introduction to Inheritance with Dart                |
+------------------------------------------------------------
+General concepts about inheritance in OOP...
+
+------------------------------------------------------------
+| 48. Creating Classes and Inheritance Tree                |
+------------------------------------------------------------
+Parent class: Person
+Child class: Bonni, Minho
+---
+> Printing [Person] from [Bonni]...
+Bonni
+> Printing [Bonni]...
+Ballerina
+#
+> Printing [Person] and [Minho] from [Minho]...
+Minho
+32
+
+------------------------------------------------------------
+| 49. Override Methods                                     |
+------------------------------------------------------------
+> No overriding methods
+Hello!
+Nationality: American
+#
+> Overriding methods
+Annyeong!
+Nationality: South Korean
+
+------------------------------------------------------------
+| 50. Inheriting Classes with Constructors                 |
+------------------------------------------------------------
+Location = 23.89, -234.98, 90
+
+------------------------------------------------------------
+| 51. The toString() Method - Override                     |
+------------------------------------------------------------
+> toString() is implicitly inherited to Class.
+Bonni
+Instance of 'Object'
+#
+> Override toString()...
+23.89, -234.98, 90
+
+(Last updated: 2020-08-06 13:27:02)
