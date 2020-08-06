@@ -1,0 +1,34 @@
+# 61. Introduction to Flutter and Flutter App Anatomy
+
+## Flutter App Anatomy - Overview
+- Widget based.
+
+Screen
+- Text
+- Button
+- Container
+  - Row
+  - Columns
+
+## Basic Widgets
+- Text
+- Rows
+- Columns
+- **Stacks**: put items on top of each other
+- **Container**: contains everything
+
+Key: think of everything like a tree-like hierarchy.
+
+Widget and Objects!
+
+***
+
+# 65. Litter Material Design Presentation
+
+## Material Design
+
+Mimic what the real world view/paper looks like...
+
+... views that emulate emotion, motion, shadows which mimics real world objects.
+
+> Material is a conceptual piece of paper on which the UI appears.
