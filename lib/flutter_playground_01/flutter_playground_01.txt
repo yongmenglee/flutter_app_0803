@@ -1,34 +1,66 @@
 # 61. Introduction to Flutter and Flutter App Anatomy
-
 ## Flutter App Anatomy - Overview
 - Widget based.
-
 Screen
 - Text
 - Button
 - Container
   - Row
   - Columns
-
 ## Basic Widgets
 - Text
 - Rows
 - Columns
 - **Stacks**: put items on top of each other
 - **Container**: contains everything
-
 Key: think of everything like a tree-like hierarchy.
-
 Widget and Objects!
 
 ***
 
-# 65. Litter Material Design Presentation
+# 62. Creating a Flutter Hello World app
+Text Widget - must specify text direction.
 
+***
+
+# 63. Understanding Material Design Basics
+By enclosing Center within Material widget, we can create beautiful app.
+
+***
+
+# 64. Flutter Scaffold Widget and Properties
+Modularize the codes, put codes into separate DART files.
+
+***
+
+# 65. Little Material Design Presentation
 ## Material Design
-
 Mimic what the real world view/paper looks like...
-
 ... views that emulate emotion, motion, shadows which mimics real world objects.
-
 > Material is a conceptual piece of paper on which the UI appears.
+
+***
+
+# 66. Flutter Scaffold Widget and Properties
+// - Scaffold must be enclosed within MaterialApp.
+// - Use Scaffold as often.
+// - Icon button is a generic widget.
+
+***
+
+# 67. InkWell Widget - own customized widget with a tapable property.
+
+Side note: Text direction not required because this is inside the scaffold.
+
+***
+
+# 68. Gesture Detector Widget
+InkWell is a simplistic approach to a gesture detector.
+
+BuildContext: Knows the location of the Widget in the
+widget tree.
+"The widget of widget"
+
+InkWell vs GestureDetector
+- can use InkWell for simple tap
+- GestureDetector for more sophisticated customization.
