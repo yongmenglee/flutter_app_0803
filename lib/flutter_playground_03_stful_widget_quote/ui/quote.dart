@@ -39,7 +39,6 @@ class _QuoteState extends State<Quote> {
                 height: 200,
                 margin: EdgeInsets.all(30.0),
                 decoration: BoxDecoration(
-//                    color: Colors.greenAccent.withAlpha(40),
 //                  color: Colors.transparent,
                   borderRadius: BorderRadius.circular(14.5),
                 ),
@@ -79,8 +78,6 @@ class _QuoteState extends State<Quote> {
     // Increment our index/counter by 1
     // Wrap the increment into setState - redraw the Widget.
     setState(() {
-
-
       _index = (_index + 1) % listQuotes.length;
     });
   }
