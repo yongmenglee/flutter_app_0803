@@ -1,7 +1,8 @@
 // Section 12. Building Flutter Apps - Flutter Fundamentals
 
 import 'package:flutter/material.dart';
-import 'ui/home.dart';
+import 'ui/scaffold_example.dart';
+//import 'ui/home.dart';
 
 //void main() => runApp(Home());
 
