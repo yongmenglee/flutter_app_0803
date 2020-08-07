@@ -1,0 +1,17 @@
+// Section 14. Flutter Stateful Widgets
+
+# Stateless vs Stateful
+
+Stateless:
+- No internal state, no widget redrawing.
+- Button, Text
+
+Stateful:
+- Save internal state, widget redrawing happens.
+- Text field: enter text
+- Slider: change value
+  - onSlider touched
+    - setState: slider changes values.
+    - Stores state in state object.
+    - Redraw: change the UI (redraw the UI)
+
