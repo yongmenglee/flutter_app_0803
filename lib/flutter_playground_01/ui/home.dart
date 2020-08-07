@@ -1,23 +1,10 @@
+// Section 12. Building Flutter Apps - Flutter Fundamentals
+
 import 'package:flutter/material.dart';
-
-//region 66. Flutter Scaffold Widget and Properties
-
-class BottomNavButton {
-  Icon _btnIcon;
-  Text _btnTitle;
-
-  BottomNavButton.create(this._btnIcon, this._btnTitle);
-}
 
 enum BottomNavigation { HOME, MY_NETWORK, POST, NOTIFICATIONS, JOBS }
 
 class ScaffoldExample extends StatelessWidget {
-
-//class ScaffoldExample extends StatelessWidget {
-  void _tapButton() {
-    debugPrint("Tapped button");
-  }
-
   final _mapBottomNavButton = {
     "Home": Icons.home,
     "My Network": Icons.people_outline,
@@ -26,7 +13,7 @@ class ScaffoldExample extends StatelessWidget {
     "Jobs": Icons.work
   };
 
-  final _titleStyleBottomNavButton = new TextStyle(fontSize: 10);
+  final _titleStyleBottomNavButton = new TextStyle(fontSize: 12);
 
   List<BottomNavigationBarItem> listBtnBottomNavigation() {
     var list = new List<BottomNavigationBarItem>();
@@ -39,98 +26,134 @@ class ScaffoldExample extends StatelessWidget {
     return list;
   }
 
+  List<String> _listTitleBottomNavBtn() => _mapBottomNavButton.keys.toList();
+
+  void _tapButton() => debugPrint("Tapped button");
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Scaffold"),
-        centerTitle: false, // true: center; false: left
-        backgroundColor: Colors.amberAccent.shade700, // specify color + shade
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.add),
-              onPressed: () => debugPrint("Add button tapped!")),
-          IconButton(icon: Icon(Icons.search), onPressed: _tapButton)
-        ],
-      ),
-      //region 70. Floating Action button
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.lightBlueAccent,
-        child: Icon(Icons.add_a_photo),
-        onPressed: () => debugPrint("Hello"),
-      ),
-      //endregion
-      //region 69. BottomNavBar
-      // Max 3 button on bottom nav bar (both horizontal & vertical).
-      bottomNavigationBar: BottomNavigationBar(
-        items: listBtnBottomNavigation(), 
-        onTap: (int index) => debugPrint("Tapped item: $index"),
-        type: BottomNavigationBarType.fixed,
-      ),
-      //endregion
-      backgroundColor: Colors.grey.shade300,
+    Future<void> _showMyDialogBottomNav(int index) async {
+      var _listTitle = _listTitleBottomNavBtn()[index];
+      var _txtAlertTitle = "$_listTitle Tapped!";
+      var _listAlertMessages = [
+        Text('You\'ve tapped $_listTitle! 🤩'),
+        Text('Please approve to close this alert dialog.'),
+      ];
 
-      //region 67. InkWell widget
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return buildAlertDialog(_txtAlertTitle, _listAlertMessages, context);
+        },
+      );
+    }
+
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Scaffold"),
+          centerTitle: false, // true: center; false: left
+          backgroundColor: Colors.amberAccent.shade700, // specify color + shade
+          leading: IconButton(
+            icon: Icon(Icons.list),
+            onPressed: () => debugPrint("Show menu."),
+
+          ),
+          actions: <Widget>[
+            IconButton(
+                icon: Icon(Icons.add),
+                onPressed: () => debugPrint("Add button tapped!")),
+            IconButton(icon: Icon(Icons.search), onPressed: _tapButton)
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.lightBlueAccent,
+          child: Icon(Icons.add_a_photo),
+          onPressed: () => debugPrint("Hello"),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: listBtnBottomNavigation(),
+          onTap: _showMyDialogBottomNav, // parameter: (int)
+          type: BottomNavigationBarType.fixed, // set >3 buttons
+        ),
+        backgroundColor: Colors.grey.shade300,
+
 //        body: Center(child: Text("Hello Again!"))
-      body: Container(
-          alignment: Alignment.center,
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                CustomButton(),
-//                InkWell(
-//                  child: Text("Tap me!", style: TextStyle(fontSize: 23.5)),
-//                  onTap: () => debugPrint("Tapped..."),
-//                )
-              ])),
-      //endregion
-    );
+        body: Container(
+            alignment: Alignment.center,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  CustomButton("New Button"),
+                  Container(padding: EdgeInsets.all(10.0)),
+                  CustomButton("New Button 2"),
+                  Container(padding: EdgeInsets.all(10.0)),
+                  InkWell(
+                    child: Text("Tap me!", style: TextStyle(fontSize: 23.5)),
+                    onTap: () => debugPrint("Tapped..."),
+                  )
+                ])));
   }
 
-//  void setState(Null Function() param0) {}
+  AlertDialog buildAlertDialog(
+      String title, List<Widget> listMessage, BuildContext context) {
+    return AlertDialog(
+      title: Text(title),
+      content: SingleChildScrollView(
+        child: ListBody(
+          children: listMessage,
+        ),
+      ),
+      actions: <Widget>[
+        FlatButton(
+          child: Text('Approve'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    );
+  }
 }
-//endregion
 
-//region 68. Gesture Detector widget
 class CustomButton extends StatelessWidget {
+  final _txtTitle;
+
+  CustomButton(this._txtTitle);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
           final snackBar = SnackBar(
-            content: Text("Hello Again"),
-            backgroundColor: Colors.amberAccent.shade400,
+            content: Text("${this._txtTitle} tapped! 😀",
+                textAlign: TextAlign.center),
+            backgroundColor: Colors.black12.withOpacity(0.7),
+            duration: Duration(milliseconds: 1500),
           );
           Scaffold.of(context).showSnackBar(snackBar);
         },
         child: Container(
           padding: EdgeInsets.all(10.0),
           decoration: BoxDecoration(
-            color: Colors.pinkAccent,
+            color: Colors.pinkAccent.shade100,
             borderRadius: BorderRadius.circular(8.0),
           ),
-          child: Text("Button"),
+          child: Text(this._txtTitle),
         ));
   }
 }
 
-//endregion
-
-//region 64. Formatting our code
-
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //region 62. Creating a Flutter Hello World app
 //    return Center(
 //      child: Text(
 //        "Hello Flutter",
 //        textDirection: TextDirection.ltr,
 //      ),
 //    );
-    //endregion
 
-    //region 63. Understanding Material Design Basics
     return Material(
       color: Colors.deepOrange,
       child: Center(
@@ -144,7 +167,5 @@ class Home extends StatelessWidget {
         ),
       ),
     );
-    //endregion
   }
 }
-//endregion
