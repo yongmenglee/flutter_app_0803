@@ -4,5 +4,6 @@ import 'package:flutter/material.dart';
 import 'ui/bill_splitter.dart';
 
 void main() => runApp(new MaterialApp(
+  title: 'Flutter Playground',
   home: BillSplitter(),
 ));
