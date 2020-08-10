@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'ui/quiz_app.dart';
 
+//void main() => runApp(new MaterialApp(
 void main() => runApp(new MaterialApp(
   title: 'Flutter Playground',
-  home: QuizApp(),
+//  home: QuizApp(),
+  home: new Scaffold(body: QuizApp()),
 ));
