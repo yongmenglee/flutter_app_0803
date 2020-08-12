@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutterapp0803/flutter_playground_06_movie/model/movie.dart';
 import 'package:flutterapp0803/flutter_playground_06_movie/ui/movie_details_view.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 Future<String> _loadFromAsset() async {
   return await rootBundle.loadString("assets/film.json");
@@ -47,7 +48,7 @@ class MovieListView extends StatelessWidget {
         title: Text("Movies"),
         backgroundColor: Colors.blueGrey.shade900,
       ),
-      backgroundColor: Colors.blueGrey.shade400,
+      backgroundColor: Colors.blueGrey.shade900,
       body: FutureBuilder(
         builder: (context, snapshot) {
           var movieList = List.from(json.decode(snapshot.data.toString()));
@@ -65,50 +66,6 @@ class MovieListView extends StatelessWidget {
                 Positioned(
                     top: 10.0, child: movieImage(listMovies[index].images[0])),
               ]);
-//              return Card(
-//                color: Colors.white,
-//                elevation: 2.0, // shadow
-//                child: ListTile(
-////              title: Text(movies[index]),
-//                  title: Text(listMovies[index].title),
-//                  subtitle: Text("Director: ${listMovies[index].director}"),
-//                  leading: CircleAvatar(
-//                    child: Container(
-//                      width: 200,
-//                      height: 200,
-//                      decoration: BoxDecoration(
-//                        // Note: Image in a box decoration is a decoration image.
-//                        image: DecorationImage(
-//                          image: NetworkImage(listMovies[index].images[0]),
-//                          fit: BoxFit.cover,
-//                        ),
-////                    color: Colors.blue,
-//                        borderRadius: BorderRadius.circular(13.9),
-//                      ),
-////                  child: Text(movies[index][0]),
-////                      child: Text(listMovies[index].title[0]),
-////                      child: Text("H"),
-//                    ),
-//                  ),
-//                  trailing: Text("..."),
-////              onTap: () => debugPrint("Movie name: ${movies[index]}"),
-//                  onTap: () {
-//                    // Navigator
-//                    // Push: when we want to go to certain route.
-//                    Navigator.push(
-//                      context,
-//                      // MaterialPageRoute knows how to build the desired view.
-//                      MaterialPageRoute(
-//                        builder: (context) =>
-////                        MovieDetailsView(movieName: movies[index]),
-//                            MovieDetailsView(
-//                                movieName: listMovies[index].title,
-//                                movie: listMovies[index]),
-//                      ),
-//                    );
-//                  },
-//                ),
-//              );
             },
             itemCount: listMovies.length,
           );
@@ -116,50 +73,10 @@ class MovieListView extends StatelessWidget {
         future: DefaultAssetBundle.of(context).loadString("assets/film.json"),
         initialData: [],
       ),
-//      body: ListView.builder(
-//        child: ListView.builder(
-//          itemCount: movies.length, // set # of items in the list view.
-//          itemBuilder: (BuildContext context, int index) {
-//            return Card(
-//              color: Colors.white,
-//              elevation: 2.0, // shadow
-//              child: ListTile(
-////              title: Text(movies[index]),
-//                title: Text(listMovies[index].title),
-//                subtitle: Text("sub"),
-//                leading: CircleAvatar(
-//                  child: Container(
-//                    decoration: BoxDecoration(
-////                    color: Colors.blue,
-//                      borderRadius: BorderRadius.circular(13.9),
-//                    ),
-////                  child: Text(movies[index][0]),
-////                  child: Text(listMovies[index].title[0]),
-//                    child: Text("H"),
-//                  ),
-//                ),
-//                trailing: Text("..."),
-////              onTap: () => debugPrint("Movie name: ${movies[index]}"),
-//                onTap: () {
-//                  // Navigator
-//                  // Push: when we want to go to certain route.
-//                  Navigator.push(
-//                    context,
-//                    // MaterialPageRoute knows how to build the desired view.
-//                    MaterialPageRoute(
-//                      builder: (context) =>
-////                        MovieDetailsView(movieName: movies[index]),
-//                        MovieDetailsView(movieName: listMovies[index].title),
-//                    ),
-//                  );
-//                },
-//              ),
-//            );
-//          },
-//        ),
     );
   }
 
+  /// Define movie card as the list tile with customizable design.
   Widget movieCard(Movie movie, BuildContext context) {
     return InkWell(
       child: Container(
@@ -176,9 +93,11 @@ class MovieListView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  // Row #1: Movie title & Rating
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
+                      // Movie title
                       Flexible(
                         child: Text(
                           movie.title,
@@ -188,18 +107,52 @@ class MovieListView extends StatelessWidget {
                               color: Colors.white),
                         ),
                       ),
-                      Text("Rating: ${movie.imdbRating} / 10",
-                          style: mainTextStyle()),
+
+                      // imdb Rating
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(right: 4.0),
+                            child: Text("Rating:", style: mainTextStyle()),
+                          ),
+                          CircularPercentIndicator(
+                            radius: 20.0,
+                            lineWidth: 2.0,
+                            percent: double.tryParse(movie.imdbRating) != null
+                                ? double.parse(movie.imdbRating) / 10.0
+                                : 0.0,
+                            center: double.tryParse(movie.imdbRating) != null
+                                ? Text("")
+                                : Text("--", style: mainTextStyle(),),
+                            progressColor: Colors.yellow,
+                            backgroundColor: Colors.blueGrey.shade800,
+                          ),
+                        ],
+                      )
                     ],
                   ),
+
+                  // Row #2: Movie released date, Run time and Rate.
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text("Released:\n${movie.released}",
-                          style: mainTextStyle()),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(right: 4.0),
+                            child: Icon(
+                              Icons.calendar_today,
+                              color: Colors.grey,
+                              size: 13.0,
+                            ),
+                          ),
+                          Text("${movie.released}", style: mainTextStyle()),
+                        ],
+                      ),
                       Text("${movie.runtime} (${movie.rated})",
                           style: mainTextStyle()),
-//                        Text(movie.rated, style: mainTextStyle()),
                     ],
                   )
                 ],
@@ -223,6 +176,7 @@ class MovieListView extends StatelessWidget {
     );
   }
 
+  /// Define the style for the main text (avoid redundant definition).
   TextStyle mainTextStyle() {
     return TextStyle(
       fontSize: 13.0,
@@ -230,6 +184,7 @@ class MovieListView extends StatelessWidget {
     );
   }
 
+  /// Build container with movie images enclosed in a circular box.
   Widget movieImage(String imageUrl) {
     return Container(
       width: 100.0,
@@ -246,6 +201,7 @@ class MovieListView extends StatelessWidget {
     );
   }
 
+  /// Convert JSON string to list of Movie objects.
   Future parseJson() async {
     String jsonString = await _loadFromAsset();
     final jsonResponse = jsonDecode(jsonString);
@@ -253,8 +209,6 @@ class MovieListView extends StatelessWidget {
     var movieList = List.from(jsonResponse);
     movieList.forEach((element) {
       Movie _movie = new Movie.fromJson(element);
-
-//        debugPrint(_movie.title);
 
       listMovies.add(_movie);
     });
