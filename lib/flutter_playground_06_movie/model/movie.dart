@@ -1,87 +1,9 @@
-//class Movie {
-////  static Movie getMovies => List<Movie>() [
-////    Movie(title, year, rated, released, runtime, genre, director, writer, actor, plot, language, country, awards, poster, metascore, imdbRating, imdbVotes, imdbID, type, response, images)
-////  ];
-//
-//  String title;
-//  String year;
-//  String rated;
-//  String released;
-//  String runtime;
-//  String genre;
-//  String director;
-//  String writer;
-//  String actor;
-//  String plot;
-//  String language;
-//  String country;
-//  String awards;
-//  String poster;
-//  String metascore;
-//  String imdbRating;
-//  String imdbVotes;
-//  String imdbID;
-//  String type;
-//  String response;
-//  List<String> images;
-//
-//  Movie(
-//      this.title,
-//      this.year,
-//      this.rated,
-//      this.released,
-//      this.runtime,
-//      this.genre,
-//      this.director,
-//      this.writer,
-//      this.actor,
-//      this.plot,
-//      this.language,
-//      this.country,
-//      this.awards,
-//      this.poster,
-//      this.metascore,
-//      this.imdbRating,
-//      this.imdbVotes,
-//      this.imdbID,
-//      this.type,
-//      this.response,
-//      this.images);
-//
-////  Movie.fromJson(Map json)
-////      : title = json['title'],
-////        year = json['year'];
-//
-//  Movie.fromJson(Map json)
-//      : title = json['title'],
-//        year = json['year'],
-//        rated = json['rated'],
-//        released = json['released'],
-//        runtime = json['runtime'],
-//        genre = json['genre'],
-//        director = json['director'],
-//        writer = json['writer'],
-//        actor = json['actor'],
-//        plot = json['plot'],
-//        language = json['language'],
-//        country = json['country'],
-//        awards = json['awards'],
-//        poster = json['poster'],
-//        metascore = json['metascore'],
-//        imdbRating = json['imdbRating'],
-//        imdbVotes = json['imdbVotes'],
-//        imdbID = json['imdbID'],
-//        type = json['type'],
-//        response = json['response'],
-//        images = json['images'];
-//}
-//
-////Future<String> _loadFromAsset() async {
-////  return await rootBundle.loadString("assets/film.json");
-////}
+// Section 17: Flutter Intermediate Concepts - Navigation, ListViews -
+// Building a Movie App
 
-// From this link: https://javiercbk.github.io/json_to_dart/
+// Generated via link: https://javiercbk.github.io/json_to_dart/
 
+/// Movie class: Parse movie details from JSON file.
 class Movie {
   String title;
   String year;
@@ -105,6 +27,7 @@ class Movie {
   String response;
   List<String> images;
 
+  /// Constructor
   Movie(
       {this.title,
       this.year,
@@ -128,6 +51,7 @@ class Movie {
       this.response,
       this.images});
 
+  /// Convert JSON object into Movie object.
   Movie.fromJson(Map<String, dynamic> json) {
     title = json['Title'];
     year = json['Year'];
@@ -152,6 +76,7 @@ class Movie {
     images = json['Images'].cast<String>();
   }
 
+  /// Convert Movie object into JSON Map.
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['Title'] = this.title;

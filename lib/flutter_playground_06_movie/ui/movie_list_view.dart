@@ -2,47 +2,17 @@
 // Building a Movie App
 
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutterapp0803/flutter_playground_06_movie/model/movie.dart';
 import 'package:flutterapp0803/flutter_playground_06_movie/ui/movie_details_view.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-Future<String> _loadFromAsset() async {
-  return await rootBundle.loadString("assets/film.json");
-}
-
 class MovieListView extends StatelessWidget {
   // The data source (not updated using Hot reload)
-  List<Movie> listMovies = [];
-
-  final List movies = [
-    "Titanic",
-    "Blade Runner",
-    "Rambo",
-    "The Avengers",
-    "Avatar",
-    "I Am Legend",
-    "300",
-    "The Wolf of Wall Street",
-    "Interstellar",
-    "Game of Thrones",
-    "Vikings",
-    "Vikings",
-    "Vikings",
-  ];
+  final List<Movie> listMovies = [];
 
   @override
   Widget build(BuildContext context) {
-//    parseJson();
-
-//    listMovies.forEach((element) {
-//      debugPrint(element.title);
-//    });
-
-//    debugPrint(listMovies.length.toString());
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Movies"),
@@ -54,22 +24,27 @@ class MovieListView extends StatelessWidget {
           var movieList = List.from(json.decode(snapshot.data.toString()));
           movieList.forEach((element) {
             Movie _movie = new Movie.fromJson(element);
-            debugPrint(_movie.title);
+//            debugPrint(_movie.title);
             listMovies.add(_movie);
           });
 
           return ListView.builder(
             // set # of items in the list view.
             itemBuilder: (BuildContext context, int index) {
-              return Stack(children: <Widget>[
-                movieCard(listMovies[index], context),
-                Positioned(
-                    top: 10.0, child: movieImage(listMovies[index].images[0])),
-              ]);
+              return Stack(
+                children: <Widget>[
+                  movieCard(listMovies[index], context),
+                  Positioned(
+                    top: 10.0,
+                    child: movieImage(listMovies[index].images[0]),
+                  ),
+                ],
+              );
             },
             itemCount: listMovies.length,
           );
         },
+        // Load string from JSON file containing movie details.
         future: DefaultAssetBundle.of(context).loadString("assets/film.json"),
         initialData: [],
       ),
@@ -78,6 +53,7 @@ class MovieListView extends StatelessWidget {
 
   /// Define movie card as the list tile with customizable design.
   Widget movieCard(Movie movie, BuildContext context) {
+    // Tappable movie card: Navigate user to movie details route.
     return InkWell(
       child: Container(
         margin: EdgeInsets.only(left: 60.0),
@@ -102,9 +78,10 @@ class MovieListView extends StatelessWidget {
                         child: Text(
                           movie.title,
                           style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 17.0,
-                              color: Colors.white),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17.0,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
 
@@ -119,17 +96,19 @@ class MovieListView extends StatelessWidget {
                           CircularPercentIndicator(
                             radius: 20.0,
                             lineWidth: 2.0,
+                            // Show 0.0 if [movie.imdbRating] is "N/A".
                             percent: double.tryParse(movie.imdbRating) != null
                                 ? double.parse(movie.imdbRating) / 10.0
                                 : 0.0,
+                            // Show "--" if [movie.imdbRating] is "N/A".
                             center: double.tryParse(movie.imdbRating) != null
                                 ? Text("")
-                                : Text("--", style: mainTextStyle(),),
+                                : Text("--", style: mainTextStyle()),
                             progressColor: Colors.yellow,
                             backgroundColor: Colors.blueGrey.shade800,
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
 
@@ -148,13 +127,13 @@ class MovieListView extends StatelessWidget {
                               size: 13.0,
                             ),
                           ),
-                          Text("${movie.released}", style: mainTextStyle()),
+                          Text("${movie.released}", style: mainTextStyle())
                         ],
                       ),
                       Text("${movie.runtime} (${movie.rated})",
                           style: mainTextStyle()),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
@@ -168,8 +147,7 @@ class MovieListView extends StatelessWidget {
           context,
           // MaterialPageRoute knows how to build the desired view.
           MaterialPageRoute(
-            builder: (context) =>
-                MovieDetailsView(movieName: movie.title, movie: movie),
+            builder: (context) => MovieDetailsView(movie: movie),
           ),
         );
       },
@@ -199,18 +177,5 @@ class MovieListView extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  /// Convert JSON string to list of Movie objects.
-  Future parseJson() async {
-    String jsonString = await _loadFromAsset();
-    final jsonResponse = jsonDecode(jsonString);
-
-    var movieList = List.from(jsonResponse);
-    movieList.forEach((element) {
-      Movie _movie = new Movie.fromJson(element);
-
-      listMovies.add(_movie);
-    });
   }
 }

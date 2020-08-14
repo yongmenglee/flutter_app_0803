@@ -2,17 +2,13 @@
 // Building a Movie App
 
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutterapp0803/flutter_playground_06_movie/model/movie.dart';
 
 // New route (screen or page)
 class MovieDetailsView extends StatelessWidget {
-  final String movieName;
-  final Movie movie;
-
-  const MovieDetailsView({Key key, this.movieName, this.movie})
-      : super(key: key);
+  final Movie movie; // Movie object passed from previous route.
+  const MovieDetailsView({Key key, this.movie}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +17,8 @@ class MovieDetailsView extends StatelessWidget {
         title: Text("Movies"),
         backgroundColor: Colors.blueGrey.shade900,
       ),
-      // Create user interface here.
+
+      // Build user interface here.
       body: ListView(
         children: <Widget>[
           MovieDetailsThumbnail(movie.images[0]),
@@ -42,10 +39,13 @@ class MovieDetailsThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Stack movie preview and gradient together.
     return Stack(
       alignment: Alignment.bottomCenter,
       children: <Widget>[
-        // Another stack
+        //region Movie preview
+        // Stack movie first image and play icon.
+        // Currently not playable.
         Stack(
           alignment: Alignment.center,
           children: <Widget>[
@@ -67,6 +67,9 @@ class MovieDetailsThumbnail extends StatelessWidget {
             ),
           ],
         ),
+        //endregion
+
+        //region Gradient
         Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -79,11 +82,13 @@ class MovieDetailsThumbnail extends StatelessWidget {
           ),
           height: 80,
         ),
+        //endregion
       ],
     );
   }
 }
 
+/// Build a Row widget with objects: (left) Poster, Header (right)
 class MovieDetailsHeaderWithPoster extends StatelessWidget {
   final Movie movie;
   const MovieDetailsHeaderWithPoster({Key key, this.movie}) : super(key: key);
@@ -107,6 +112,7 @@ class MovieDetailsHeaderWithPoster extends StatelessWidget {
   }
 }
 
+/// Movie poster.
 class MoviePoster extends StatelessWidget {
   final String poster;
   const MoviePoster({Key key, this.poster}) : super(key: key);
@@ -131,6 +137,7 @@ class MoviePoster extends StatelessWidget {
   }
 }
 
+/// Movie header: showing movie year, genre, title and plot.
 class MovieDetailsHeader extends StatelessWidget {
   final Movie movie;
   const MovieDetailsHeader({Key key, this.movie}) : super(key: key);
@@ -148,16 +155,26 @@ class MovieDetailsHeader extends StatelessWidget {
             color: Colors.cyan,
           ),
         ),
-        Text(movie.title,
-            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 32.0)),
+        Text(
+          movie.title,
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 32.0,
+          ),
+        ),
         // Note: Text.rich => for long texts
         Text.rich(TextSpan(
-          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w300),
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w300,
+          ),
           children: <TextSpan>[
             TextSpan(text: movie.plot),
             TextSpan(
               text: " More...",
-              style: TextStyle(color: Colors.indigo),
+              style: TextStyle(
+                color: Colors.indigo,
+              ),
             ),
           ],
         )),
@@ -166,6 +183,7 @@ class MovieDetailsHeader extends StatelessWidget {
   }
 }
 
+/// Showing movie cast and more details.
 class MovieDetailsCast extends StatelessWidget {
   final Movie movie;
   const MovieDetailsCast({Key key, this.movie}) : super(key: key);
@@ -175,6 +193,7 @@ class MovieDetailsCast extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
+        // Add [MovieField] objects into the children.
         children: <Widget>[
           MovieField(field: "Cast", value: movie.actors),
           MovieField(field: "Directors", value: movie.director),
@@ -187,6 +206,7 @@ class MovieDetailsCast extends StatelessWidget {
   }
 }
 
+/// Movie field for showing movie details.
 class MovieField extends StatelessWidget {
   final String field, value;
   const MovieField({Key key, this.field, this.value}) : super(key: key);
@@ -196,24 +216,33 @@ class MovieField extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text("$field: ",
-            style: TextStyle(
-              color: Colors.black38,
-              fontSize: 12.0,
-              fontWeight: FontWeight.w300,
-            )),
+        // Field title
+        Text(
+          "$field: ",
+          style: TextStyle(
+            color: Colors.black38,
+            fontSize: 12.0,
+            fontWeight: FontWeight.w300,
+          ),
+        ),
+
+        // Field value enclosed in an Expanded widget.
         Expanded(
-            child: Text(value,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w300,
-                ))),
+          child: Text(
+            value,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 12,
+              fontWeight: FontWeight.w300,
+            ),
+          ),
+        ),
       ],
     );
   }
 }
 
+/// Horizontal scroll view widget for showing more movie posters.
 class MovieDetailsExtraPosters extends StatelessWidget {
   final List<String> posters;
   const MovieDetailsExtraPosters({Key key, this.posters}) : super(key: key);
@@ -251,7 +280,9 @@ class MovieDetailsExtraPosters extends StatelessWidget {
                   height: 160,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: NetworkImage(posters[index]), fit: BoxFit.cover),
+                      image: NetworkImage(posters[index]),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
@@ -263,6 +294,7 @@ class MovieDetailsExtraPosters extends StatelessWidget {
   }
 }
 
+/// Horizontal line that separates sections on a page/screen/route.
 class HorizontalLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
