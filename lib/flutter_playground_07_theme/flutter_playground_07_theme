@@ -1,0 +1,82 @@
+# Android UI and UX Material Design
+
+## What's UI?
+
+### UI - User Interface
+
+Anything designed to be interacted with.
+Smart phones, tablets, websites, desktop etc
+
+### What Makes a Good UI?
+
+1. Clarity - inspires confidence - further use - predictable
+2. Enables Interaction - feel inspired/part of the world
+3. Focused - focus @ one primary item only.
+4. Keep Users in Control - more comfortable.
+5. Provide a Natural next Step - what comes next? Don't let user hanging.
+6. Intuitive - Appearance follows behaviour - no surprise - feel included.
+
+
+## UX - User Experience
+
+Good Experience = Good Interaction
+
+**Useful** - Desirable - **Valuable** - Accessible - Findable - **Credible** - Usable
+
+=> Value.
+
+- Pretty is not part of a good UI.
+
+***
+
+# Android Material Design Brief History
+
+## Material Design Principles
+
+1. Emphasis on User Interaction - Tactile reality
+2. Bold, graphic, intentional - button, scroll, etc.
+3. Emulates motion - provides meaning - meaning
+
+***
+
+# Themes
+
+Share colors, typography and global (more consistent) styling across your app.
+
+Modification in one place only
+
+## Real Scenario
+
+Client changes their mind about the entire app look and feel...
+
+- They want to change all of the header fonts to a bigger size.
+- Change appBar background color, icon colors... etc.
+- [By the way, all of this is after the development cycle]
+
+**What to do, as the developer?**
+
+## Solution: Themes
+
+- A more *Global* form of styling your app.
+- Easy to change/modify the look and feel of your entire app.
+- Reduces styling repetition
+- UI Consistency
+
+***
+
+# Font
+
+Google fonts: fonts.google.com
+
+***
+
+# Material design
+
+Website: material.io/design/introduction/#principles
+
+## Understanding Color Themes
+
+Unified UI and UX.
+
+## Typography and iconography
+
