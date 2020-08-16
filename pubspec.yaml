@@ -86,6 +86,9 @@ flutter:
     - family: Alata
       fonts:
         - asset: fonts/Alata-Regular.ttf
+    - family: Rubik
+      fonts:
+        - asset: fonts/Rubik-Light.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
