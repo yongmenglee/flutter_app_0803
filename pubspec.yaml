@@ -33,6 +33,7 @@ dependencies:
   copyable: ^0.0.1
   neumorphic: ^0.3.2
   percent_indicator: ^2.1.5
+  http: ^0.12.2
 
 dev_dependencies:
   flutter_test:
