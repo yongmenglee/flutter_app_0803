@@ -11,6 +11,7 @@ class JsonParsingMap extends StatefulWidget {
   _JsonParsingMapState createState() => _JsonParsingMapState();
 }
 
+/// With PODO
 class _JsonParsingMapState extends State<JsonParsingMap> {
   Future<PostList> data;
 
@@ -24,11 +25,11 @@ class _JsonParsingMapState extends State<JsonParsingMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("PODO"),
-        ),
-        body: Center(
-            child: Container(
+      appBar: AppBar(
+        title: Text("PODO"),
+      ),
+      body: Center(
+        child: Container(
           child: FutureBuilder(
             future: data,
             builder: (context, AsyncSnapshot<PostList> snapshot) {
@@ -43,7 +44,9 @@ class _JsonParsingMapState extends State<JsonParsingMap> {
               }
             },
           ),
-        )));
+        ),
+      ),
+    );
   }
 
   Widget createListView(List<Post> data, BuildContext context) {
@@ -78,7 +81,6 @@ class _JsonParsingMapState extends State<JsonParsingMap> {
 /// Fetch data from URL
 class Network {
   final String url;
-
   Network(this.url);
 
   Future<PostList> loadPosts() async {

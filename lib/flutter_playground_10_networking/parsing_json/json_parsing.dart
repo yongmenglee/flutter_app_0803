@@ -9,11 +9,11 @@ class JsonParsingSimple extends StatefulWidget {
   _JsonParsingSimpleState createState() => _JsonParsingSimpleState();
 }
 
+/// Without PODO
 class _JsonParsingSimpleState extends State<JsonParsingSimple> {
   Future data;
 
-  // Override init state.
-  // happens before the UI is set.
+  // Override initState(): happens before the UI is set.
   @override
   void initState() {
     super.initState();
@@ -70,28 +70,31 @@ class _JsonParsingSimpleState extends State<JsonParsingSimple> {
   Widget createListView(List data, BuildContext context) {
     return Container(
       child: ListView.builder(
-          itemCount: data.length,
-          itemBuilder: (context, int index) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Divider(height: 5.0,),
-                ListTile(
-                  title: Text("${data[index]["title"]}"),
-                  subtitle: Text("${data[index]["body"]}"),
-                  leading: Column(
-                    children: <Widget>[
-                      CircleAvatar(
-                        backgroundColor: Colors.black26,
-                        radius: 23,
-                        child: Text("${data[index]["id"]}"),
-                      ),
-                    ],
-                  ),
+        itemCount: data.length,
+        itemBuilder: (context, int index) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Divider(
+                height: 5.0,
+              ),
+              ListTile(
+                title: Text("${data[index]["title"]}"),
+                subtitle: Text("${data[index]["body"]}"),
+                leading: Column(
+                  children: <Widget>[
+                    CircleAvatar(
+                      backgroundColor: Colors.black26,
+                      radius: 23,
+                      child: Text("${data[index]["id"]}"),
+                    ),
+                  ],
                 ),
-              ],
-            );
-          }),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

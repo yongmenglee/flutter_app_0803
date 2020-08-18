@@ -1,3 +1,5 @@
+// Section 22: Build a Weather Forecast App
+
 // Notes:
 // ---
 // [1] API in use: https://api.openweathermap.org/data/2.5/forecast?q=ipoh&appid=a2ded99b8ead93e3209b8f88a21e469c&units=imperial
@@ -136,7 +138,8 @@ class Main {
       this.tempKf});
 
   Main.fromJson(Map<String, dynamic> json) {
-    temp = json['temp'].toDouble(); // toDouble(): force the conversion to double
+    temp =
+        json['temp'].toDouble(); // toDouble(): force the conversion to double
     feelsLike = json['feels_like'].toDouble();
     tempMin = json['temp_min'].toDouble();
     tempMax = json['temp_max'].toDouble();
@@ -308,14 +311,33 @@ class Coord {
   Coord({this.lat, this.lon});
 
   Coord.fromJson(Map<String, dynamic> json) {
-    lat = json['lat'];
-    lon = json['lon'];
+    lat = json['lat'].toDouble();
+    lon = json['lon'].toDouble();
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['lat'] = this.lat;
     data['lon'] = this.lon;
+    return data;
+  }
+}
+
+class ErrorModel {
+  String cod;
+  String message;
+
+  ErrorModel({this.cod, this.message});
+
+  ErrorModel.fromJson(Map<String, dynamic> json) {
+    cod = json['cod'];
+    message = json['message'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['cod'] = this.cod;
+    data['message'] = this.message;
     return data;
   }
 }
