@@ -1,6 +1,7 @@
 // Section 22: Build a Weather Forecast App
 
 import 'package:flutter/material.dart';
+import 'package:flutterapp0803/flutter_playground_11_weather/ui/bottom_view.dart';
 import 'package:flutterapp0803/flutter_playground_11_weather/ui/mid_view.dart';
 
 import 'model/weather_forecast_model.dart';
@@ -51,6 +52,7 @@ class _WeatherForecastState extends State<WeatherForecast> {
                     return Column(
                       children: <Widget>[
                         midView(snapshot),
+                        bottomView(snapshot, context)
                       ],
                     );
                   } else if (snapshot.data.cod == "404") {
