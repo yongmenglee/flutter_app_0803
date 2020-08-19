@@ -1,7 +1,6 @@
 // Section 22: Build a Weather Forecast App
 
 import 'package:flutter/material.dart';
-import 'package:flutterapp0803/flutter_playground_11_weather/main.dart';
 import 'package:flutterapp0803/flutter_playground_11_weather/model/weather_forecast_model.dart';
 import 'package:flutterapp0803/flutter_playground_11_weather/util/convert_icon.dart';
 import 'package:flutterapp0803/flutter_playground_11_weather/util/forecast_util.dart';
@@ -76,9 +75,12 @@ class MidView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  buildWeatherInfoWidget(context, forecast, WeatherInfo.windSpeed),
-                  buildWeatherInfoWidget(context, forecast, WeatherInfo.humidity),
-                  buildWeatherInfoWidget(context, forecast, WeatherInfo.maxTemp),
+                  buildWeatherInfoWidget(
+                      context, forecast, WeatherInfo.windSpeed),
+                  buildWeatherInfoWidget(
+                      context, forecast, WeatherInfo.humidity),
+                  buildWeatherInfoWidget(
+                      context, forecast, WeatherInfo.maxTemp),
                 ],
               ),
             ),
@@ -166,7 +168,8 @@ class MidView extends StatelessWidget {
 //  return midView;
 //}
 
-Widget buildWeatherInfoWidget(BuildContext context, ListA forecast, WeatherInfo info) {
+Widget buildWeatherInfoWidget(
+    BuildContext context, ListA forecast, WeatherInfo info) {
   String infoText = "";
   IconData infoIcon;
 

@@ -21,27 +21,20 @@ ThemeData _appTheme = mainTheme.copyWith(
   primaryColor: primaryColor,
   primaryColorLight: primaryColorLight,
   primaryColorDark: primaryColorDark,
-
   scaffoldBackgroundColor: Colors.white,
-
   accentColor: secondaryColorDark,
   splashColor: secondaryColorLight,
-  
   cursorColor: primaryColorDark,
   textSelectionColor: primaryColorLight.withOpacity(0.5),
   textSelectionHandleColor: primaryColorDark,
-
   cardTheme: getCardTheme(),
   iconTheme: getIconTheme(),
-  inputDecorationTheme: getInputDecorationTheme(),
   textTheme: getTextTheme(),
 );
 
 getCardTheme() {
-  return mainTheme.cardTheme.copyWith(
-    color: primaryColor,
-    shadowColor: primaryColorDark
-  );
+  return mainTheme.cardTheme
+      .copyWith(color: primaryColor, shadowColor: primaryColorDark);
 }
 
 getIconTheme() {
@@ -50,18 +43,11 @@ getIconTheme() {
   );
 }
 
-getInputDecorationTheme() {
-  return mainTheme.inputDecorationTheme.copyWith(
-//    fillColor: Colors.black,
-  );
-}
-
 getTextTheme() {
   return mainTheme.textTheme.copyWith().apply(
-    fontFamily: "Rubik",
-  );
+        fontFamily: "Rubik",
+      );
 }
-
 
 //endregion
 

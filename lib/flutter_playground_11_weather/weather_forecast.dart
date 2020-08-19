@@ -81,7 +81,7 @@ class _WeatherForecastState extends State<WeatherForecast> {
                         child: Center(
                           child: Text(
                             "The city \"${snapshot.data.city.name}\" "
-                                "cannot be found!",
+                            "cannot be found!",
                             style: TextStyle(
                               color: Theme.of(context).errorColor,
                             ),
