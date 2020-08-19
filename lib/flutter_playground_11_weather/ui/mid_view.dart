@@ -6,80 +6,164 @@ import 'package:flutterapp0803/flutter_playground_11_weather/util/convert_icon.d
 import 'package:flutterapp0803/flutter_playground_11_weather/util/forecast_util.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'; // new library for more icons.
 
-Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
-  var forecastList = snapshot.data.listA;
-  var cityName = snapshot.data.city.name;
-  var countryName = snapshot.data.city.country;
-  var forecast = forecastList[0];
-  var formattedDateTime = new DateTime.fromMillisecondsSinceEpoch(
-      forecast.dt * 1000); // millisecond => times 1000.
+// MidView => Stateless Widget
+// Better way of doing business 👍
+class MidView extends StatelessWidget {
+  final AsyncSnapshot<WeatherForecastModel> snapshot;
+  const MidView({Key key, this.snapshot}) : super(key: key);
 
-  Container midView = Container(
-    child: Padding(
-      padding: const EdgeInsets.all(14.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Text(
-            "$cityName, $countryName",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18.0,
-              color: Colors.black,
+  @override
+  Widget build(BuildContext context) {
+    var forecastList = snapshot.data.listA;
+    var countryName = snapshot.data.city.country;
+    var forecast = forecastList[0];
+    var formattedDateTime = new DateTime.fromMillisecondsSinceEpoch(
+        forecast.dt * 1000); // millisecond => times 1000.
+    final String dateFormat = "EEEE, MMM d, y HH:mm";
+    var cityName = snapshot.data.city.name;
+
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              "$cityName, $countryName",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18.0,
+                color: Colors.black,
+              ),
             ),
-          ),
-          Text(
-            "${Util.getFormattedDate(formattedDateTime)}",
-            style: TextStyle(fontSize: 15),
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: getWeatherIcon(
-                weatherDescription: forecast.weather[0].main,
-                color: Colors.pinkAccent,
-                size: 198.0),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  "${forecast.main.temp.toString()}°F",
-                  style: TextStyle(
-                    fontSize: 34.0,
+            Text(
+              "${Util.getFormattedDate(formattedDateTime, dateFormat)}",
+              style: TextStyle(fontSize: 15),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: getWeatherIcon(
+                  weatherDescription: forecast.weather[0].main,
+                  color: Colors.pinkAccent,
+                  size: 198.0),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 2.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    "${forecast.main.temp.toString()}°F",
+                    style: TextStyle(
+                      fontSize: 34.0,
+                    ),
                   ),
-                ),
-                SizedBox(width: 10.0),
-                Text(
-                  "${forecast.weather[0].description.toUpperCase()}",
-                ),
-              ],
+                  SizedBox(width: 10.0),
+                  Text(
+                    "${forecast.weather[0].description.toUpperCase()}",
+                  ),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                buildWeatherInfoWidget(forecast, WeatherInfo.windSpeed),
-                buildWeatherInfoWidget(forecast, WeatherInfo.humidity),
-                buildWeatherInfoWidget(forecast, WeatherInfo.maxTemp),
-              ],
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  buildWeatherInfoWidget(forecast, WeatherInfo.windSpeed),
+                  buildWeatherInfoWidget(forecast, WeatherInfo.humidity),
+                  buildWeatherInfoWidget(forecast, WeatherInfo.maxTemp),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ),
-  );
-
-  return midView;
+    );
+  }
 }
+
+//// midView => Widget
+//Widget midView(AsyncSnapshot<WeatherForecastModel> snapshot) {
+//  var forecastList = snapshot.data.listA;
+//  var cityName = snapshot.data.city.name;
+//  var countryName = snapshot.data.city.country;
+//  var forecast = forecastList[0];
+//  var formattedDateTime = new DateTime.fromMillisecondsSinceEpoch(
+//      forecast.dt * 1000); // millisecond => times 1000.
+//  final String dateFormat = "EEEE, MMM d, y HH:mm";
+//
+//  Container midView = Container(
+//    child: Padding(
+//      padding: const EdgeInsets.all(4.0),
+//      child: Column(
+//        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//        children: <Widget>[
+//          Text(
+//            "$cityName, $countryName",
+//            style: TextStyle(
+//              fontWeight: FontWeight.bold,
+//              fontSize: 18.0,
+//              color: Colors.black,
+//            ),
+//          ),
+//          Text(
+//            "${Util.getFormattedDate(formattedDateTime, dateFormat)}",
+//            style: TextStyle(fontSize: 15),
+//          ),
+//          SizedBox(
+//            height: 10.0,
+//          ),
+//          Padding(
+//            padding: const EdgeInsets.all(8.0),
+//            child: getWeatherIcon(
+//                weatherDescription: forecast.weather[0].main,
+//                color: Colors.pinkAccent,
+//                size: 198.0),
+//          ),
+//          Padding(
+//            padding:
+//                const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+//            child: Row(
+//              mainAxisAlignment: MainAxisAlignment.center,
+//              children: <Widget>[
+//                Text(
+//                  "${forecast.main.temp.toString()}°F",
+//                  style: TextStyle(
+//                    fontSize: 34.0,
+//                  ),
+//                ),
+//                SizedBox(width: 10.0),
+//                Text(
+//                  "${forecast.weather[0].description.toUpperCase()}",
+//                ),
+//              ],
+//            ),
+//          ),
+//          Padding(
+//            padding:
+//                const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
+//            child: Row(
+//              mainAxisAlignment: MainAxisAlignment.center,
+//              children: <Widget>[
+//                buildWeatherInfoWidget(forecast, WeatherInfo.windSpeed),
+//                buildWeatherInfoWidget(forecast, WeatherInfo.humidity),
+//                buildWeatherInfoWidget(forecast, WeatherInfo.maxTemp),
+//              ],
+//            ),
+//          ),
+//        ],
+//      ),
+//    ),
+//  );
+//
+//  return midView;
+//}
 
 Widget buildWeatherInfoWidget(ListA forecast, WeatherInfo info) {
   String infoText = "";

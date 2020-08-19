@@ -18,17 +18,15 @@ class Network {
     print("URL: ${Uri.encodeFull(finalUrl)}");
     print("Status code: ${response.statusCode}");
 
-    if (response.statusCode == 200) {
-      // Get the actual mapped model (Dart object)
-//      print("Weather data: ${response.body}");
-
-      return WeatherForecastModel.fromJson(jsonDecoded);
-    } else if (response.statusCode == 404) {
-//      print("City not found!");
-
-      return WeatherForecastModel(cod: "404");
-    } else {
-      throw Exception("Error getting weather forecast");
+    switch (response.statusCode) {
+      case 200:
+        return WeatherForecastModel.fromJson(jsonDecoded);
+      case 400:
+        return WeatherForecastModel(cod: "400");
+      case 404:
+        return WeatherForecastModel(cod: "404");
+      default:
+        throw Exception("Error getting weather forecast.");
     }
   }
 }

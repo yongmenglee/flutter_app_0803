@@ -48,32 +48,53 @@ class _WeatherForecastState extends State<WeatherForecast> {
                 print("TEST ${snapshot.data}");
 
                 if (snapshot.hasData) {
-                  if (snapshot.data.cod == "200") {
-                    return Column(
-                      children: <Widget>[
-                        midView(snapshot),
-                        bottomView(snapshot, context)
-                      ],
-                    );
-                  } else if (snapshot.data.cod == "404") {
-                    // StatusCode: 404 => City not found.
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Center(
-                        child: Text(
-                          "City not found!",
-                          style: TextStyle(color: Theme.of(context).errorColor),
+                  switch (snapshot.data.cod) {
+                    case "200": // Show weather forecast for selected city.
+                      return Column(
+                        children: <Widget>[
+//                        midView(snapshot),
+//                        bottomView(snapshot, context),
+                          MidView(snapshot: snapshot),
+                          BottomView(snapshot: snapshot),
+                        ],
+                      );
+
+                    case "400": // Prompt enter city name.
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                          child: Text(
+                            "Please enter city name.",
+                            style: TextStyle(
+                              color: Theme.of(context).errorColor,
+                            ),
+                          ),
                         ),
-                      ),
-                    );
+                      );
+
+                    case "404": // City not found.
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                          child: Text(
+                            "City not found!",
+                            style: TextStyle(
+                              color: Theme.of(context).errorColor,
+                            ),
+                          ),
+                        ),
+                      );
+
+                    default: // Other errors
+                      return Text("Error getting weather forecast data.");
                   }
-                  return Text("Error getting weather forecast data.");
                 } else {
                   return Container(
-                      child: Center(
-                    child: CircularProgressIndicator(),
+                    child: Center(
+                      child: CircularProgressIndicator(),
 //                        child: Text("Error: City not found!")),
-                  ));
+                    ),
+                  );
                 }
               },
             ),
@@ -84,23 +105,34 @@ class _WeatherForecastState extends State<WeatherForecast> {
   }
 
   Widget textFieldView() {
-    return Container(
-      child: TextField(
-        decoration: InputDecoration(
-          hintText: "Enter city name",
-          prefixIcon: Icon(Icons.search),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          contentPadding: EdgeInsets.all(8.0),
-        ),
-        onSubmitted: (value) {
-          setState(() {
-            _cityName = value;
+    final _controller = TextEditingController();
 
-            forecastObject = getWeather(cityName: value);
-          });
-        },
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        child: TextField(
+          controller: _controller,
+          decoration: InputDecoration(
+            hintText: "Enter city name",
+            prefixIcon: Icon(Icons.search),
+            suffixIcon: IconButton(
+              onPressed: () => _controller.clear(),
+              icon: Icon(Icons.clear),
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            contentPadding: EdgeInsets.all(8.0),
+          ),
+          onSubmitted: (value) {
+            setState(() {
+              if (value != "" || value != null) {
+                _cityName = value;
+                forecastObject = getWeather(cityName: value);
+              }
+            });
+          },
+        ),
       ),
     );
   }
