@@ -1,6 +1,7 @@
 // Section 22: Build a Weather Forecast App
 
 import 'package:flutter/material.dart';
+import 'package:flutterapp0803/flutter_playground_11_weather/main.dart';
 import 'package:flutterapp0803/flutter_playground_11_weather/model/weather_forecast_model.dart';
 import 'package:flutterapp0803/flutter_playground_11_weather/util/convert_icon.dart';
 import 'package:flutterapp0803/flutter_playground_11_weather/util/forecast_util.dart';
@@ -23,6 +24,7 @@ class MidView extends StatelessWidget {
     var cityName = snapshot.data.city.name;
 
     return Container(
+//      color: Theme.of(context).accentColor,
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Column(
@@ -33,7 +35,6 @@ class MidView extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18.0,
-                color: Colors.black,
               ),
             ),
             Text(
@@ -47,7 +48,7 @@ class MidView extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: getWeatherIcon(
                   weatherDescription: forecast.weather[0].main,
-                  color: Colors.pinkAccent,
+                  color: Theme.of(context).iconTheme.color,
                   size: 198.0),
             ),
             Padding(
@@ -75,9 +76,9 @@ class MidView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  buildWeatherInfoWidget(forecast, WeatherInfo.windSpeed),
-                  buildWeatherInfoWidget(forecast, WeatherInfo.humidity),
-                  buildWeatherInfoWidget(forecast, WeatherInfo.maxTemp),
+                  buildWeatherInfoWidget(context, forecast, WeatherInfo.windSpeed),
+                  buildWeatherInfoWidget(context, forecast, WeatherInfo.humidity),
+                  buildWeatherInfoWidget(context, forecast, WeatherInfo.maxTemp),
                 ],
               ),
             ),
@@ -165,7 +166,7 @@ class MidView extends StatelessWidget {
 //  return midView;
 //}
 
-Widget buildWeatherInfoWidget(ListA forecast, WeatherInfo info) {
+Widget buildWeatherInfoWidget(BuildContext context, ListA forecast, WeatherInfo info) {
   String infoText = "";
   IconData infoIcon;
 
@@ -189,10 +190,10 @@ Widget buildWeatherInfoWidget(ListA forecast, WeatherInfo info) {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(infoText),
+        SizedBox(height: 5.0),
         Icon(
           infoIcon,
           size: 20.0,
-          color: Colors.brown,
         )
       ],
     ),

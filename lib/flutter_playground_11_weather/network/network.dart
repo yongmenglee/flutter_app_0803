@@ -24,7 +24,7 @@ class Network {
       case 400:
         return WeatherForecastModel(cod: "400");
       case 404:
-        return WeatherForecastModel(cod: "404");
+        return WeatherForecastModel(cod: "404", city: City(name: cityName));
       default:
         throw Exception("Error getting weather forecast.");
     }

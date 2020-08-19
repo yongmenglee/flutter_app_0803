@@ -32,15 +32,18 @@ class _WeatherForecastState extends State<WeatherForecast> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      appBar: AppBar(
-//        title: Text("Forecast"),
-//      ),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Weather Forecast"),
+      ),
       // Note: ListView for scrollable capability.
       body: ListView(
         // Create widget piece by piece.
         children: <Widget>[
           textFieldView(),
           Container(
+            margin: EdgeInsets.all(10.0),
+//            color: Colors.white,
             child: FutureBuilder<WeatherForecastModel>(
               future: forecastObject,
               builder: (BuildContext context,
@@ -77,7 +80,8 @@ class _WeatherForecastState extends State<WeatherForecast> {
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
                           child: Text(
-                            "City not found!",
+                            "The city \"${snapshot.data.city.name}\" "
+                                "cannot be found!",
                             style: TextStyle(
                               color: Theme.of(context).errorColor,
                             ),
@@ -105,16 +109,19 @@ class _WeatherForecastState extends State<WeatherForecast> {
   }
 
   Widget textFieldView() {
+    // Define text editing controller to enable clear text.
     final _controller = TextEditingController();
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(10.0),
       child: Container(
+//        color: Colors.white,
         child: TextField(
           controller: _controller,
           decoration: InputDecoration(
             hintText: "Enter city name",
             prefixIcon: Icon(Icons.search),
+            // Note: Clear button.
             suffixIcon: IconButton(
               onPressed: () => _controller.clear(),
               icon: Icon(Icons.clear),
@@ -125,6 +132,7 @@ class _WeatherForecastState extends State<WeatherForecast> {
             contentPadding: EdgeInsets.all(8.0),
           ),
           onSubmitted: (value) {
+            _controller.text = value;
             setState(() {
               if (value != "" || value != null) {
                 _cityName = value;

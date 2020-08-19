@@ -13,7 +13,8 @@ enum TemperatureInfo {
   windSpeed,
 }
 
-Widget buildForecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, index) {
+Widget buildForecastCard(
+    BuildContext context, AsyncSnapshot<WeatherForecastModel> snapshot, index) {
   final ListA forecast = snapshot.data.listA[index];
   final DateTime formattedDateTime =
       new DateTime.fromMillisecondsSinceEpoch(forecast.dt * 1000);
@@ -41,6 +42,15 @@ Widget buildForecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, index) {
         ),
       ),
 
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
+        child: Container(
+          height: 0.5,
+          color: Theme.of(context).cardTheme.shadowColor,
+//        color: Colors.black,
+        ),
+      ),
+
       // Row: Weather Icon + Info
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -51,10 +61,12 @@ Widget buildForecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, index) {
             padding: const EdgeInsets.all(4.0),
             child: CircleAvatar(
               radius: 30.0,
-              backgroundColor: Colors.white.withOpacity(0.75),
+              backgroundColor: Colors.white,
+//              backgroundColor: Colors.transparent,
               child: getWeatherIcon(
                 weatherDescription: weatherDesc,
-                color: Colors.pinkAccent,
+//                color: Colors.pinkAccent,
+                color: Theme.of(context).iconTheme.color,
                 size: 30.0,
               ),
             ),
@@ -68,12 +80,12 @@ Widget buildForecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, index) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 // Max temperature
-                buildTempInfoRow(
+                buildFutureInfoRow(
                     forecast: forecast, info: TemperatureInfo.tempMax),
                 SizedBox(height: 1.0),
 
                 // Min temperature
-                buildTempInfoRow(
+                buildFutureInfoRow(
                     forecast: forecast, info: TemperatureInfo.tempMin),
                 SizedBox(height: 1.0),
 
@@ -84,8 +96,8 @@ Widget buildForecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, index) {
 //                  style: getWeatherInfoTextStyle(),
 //                ),
                 // - Method 2
-                buildTempInfoRow(
-                  forecast: forecast, info: TemperatureInfo.humidity),
+                buildFutureInfoRow(
+                    forecast: forecast, info: TemperatureInfo.humidity),
                 SizedBox(height: 1.0),
 
                 // Wind speed
@@ -95,7 +107,7 @@ Widget buildForecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, index) {
 //                  style: getWeatherInfoTextStyle(),
 //                ),
                 // - Method 2
-                buildTempInfoRow(
+                buildFutureInfoRow(
                     forecast: forecast, info: TemperatureInfo.windSpeed),
               ],
             ),
@@ -106,7 +118,7 @@ Widget buildForecastCard(AsyncSnapshot<WeatherForecastModel> snapshot, index) {
   );
 }
 
-Row buildTempInfoRow({ListA forecast, TemperatureInfo info}) {
+Row buildFutureInfoRow({ListA forecast, TemperatureInfo info}) {
   IconData iconData = Icons.arrow_upward;
   String tempReading = "";
 

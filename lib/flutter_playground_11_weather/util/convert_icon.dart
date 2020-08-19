@@ -32,37 +32,3 @@ Widget getWeatherIcon({String weatherDescription, Color color, double size}) {
 
   return Icon(weatherIcon, color: color, size: size);
 }
-
-Widget buildWeatherInfoWidget(ListA forecast, WeatherInfo info) {
-  String infoText = "";
-  IconData infoIcon;
-
-  switch (info) {
-    case WeatherInfo.windSpeed:
-      infoText = "${forecast.wind.speed.toStringAsFixed(1)} mi/h";
-      infoIcon = FontAwesomeIcons.wind;
-      break;
-    case WeatherInfo.humidity:
-      infoText = "${forecast.main.humidity.toStringAsFixed(1)} %";
-      infoIcon = FontAwesomeIcons.solidGrinBeamSweat;
-      break;
-    case WeatherInfo.maxTemp:
-      infoText = "${forecast.main.tempMax.toStringAsFixed(1)}°F";
-      infoIcon = FontAwesomeIcons.temperatureHigh;
-  }
-
-  return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(infoText),
-        Icon(
-          infoIcon,
-          size: 20.0,
-          color: Colors.brown,
-        )
-      ],
-    ),
-  );
-}

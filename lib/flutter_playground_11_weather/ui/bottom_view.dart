@@ -39,13 +39,25 @@ class BottomView extends StatelessWidget {
 //                  2.7, // can change 2.7 to something else
                 width: 160.0,
                 height: 160.0,
-                child: buildForecastCard(snapshot, index),
+                child: buildForecastCard(context, snapshot, index),
                 decoration: BoxDecoration(
+//                  gradient: LinearGradient(
+//                    colors: [Color(0xff9661c3), Colors.white],
+//                    begin: Alignment.topLeft,
+//                    end: Alignment.bottomRight,
+//                  ),
                   gradient: LinearGradient(
-                    colors: [Color(0xff9661c3), Colors.white],
+                    colors: [
+                      Theme.of(context).cardTheme.color,
+                      Theme.of(context).cardTheme.color.withOpacity(0.15),
+                      Theme.of(context).cardTheme.color.withOpacity(0.65),
+                      Theme.of(context).cardTheme.color.withOpacity(0.00),
+                    ],
                     begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
+                    end: Alignment.bottomCenter,
                   ),
+
+//                  gradient: RadialGradient()
                 ),
               ),
             ),
