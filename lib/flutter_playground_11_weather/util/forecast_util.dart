@@ -2,12 +2,36 @@
 
 import 'package:intl/intl.dart';
 
+class MeasuringUnit {
+  static String metric = "metric";
+  static String imperial = "imperial";
+}
+
+class Measurement {
+  static const String temperature = "temperature";
+  static const String humidity = "humidity";
+  static const String windSpeed = "wind speed";
+}
+
+final String measureUnit = MeasuringUnit.metric;
+
 class Util {
-//  static String appId = "<Use your own appId>";
-  static String appId = "a2ded99b8ead93e3209b8f88a21e469c";
+  static String appId = "ENTER_YOUR_OWN_APPID";
 
   static String getFormattedDate(DateTime dateTime, String dateFormat) {
     return new DateFormat(dateFormat).format(dateTime);
-    // ... 1999
+  }
+
+  static String getUnitFor(String measurement) {
+    switch (measurement) {
+      case Measurement.temperature:
+        return (measureUnit == MeasuringUnit.metric) ? "°C" : "°F";
+      case Measurement.humidity:
+        return "%";
+      case Measurement.windSpeed:
+        return (measureUnit == MeasuringUnit.metric) ? "km/h" : "mi/h";
+      default:
+        return "";
+    }
   }
 }

@@ -1,9 +1,9 @@
 // Section 22: Build a Weather Forecast App
 
 import 'package:flutter/material.dart';
-import 'package:flutterapp0803/flutter_playground_11_weather/ui/bottom_view.dart';
-import 'package:flutterapp0803/flutter_playground_11_weather/ui/mid_view.dart';
-
+import 'package:flutterapp0803/flutter_playground_11_weather/ui/view/bottom_view.dart';
+import 'package:flutterapp0803/flutter_playground_11_weather/ui/view/error_view.dart';
+import 'package:flutterapp0803/flutter_playground_11_weather/ui/view/mid_view.dart';
 import 'model/weather_forecast_model.dart';
 import 'network/network.dart';
 
@@ -14,7 +14,7 @@ class WeatherForecast extends StatefulWidget {
 
 class _WeatherForecastState extends State<WeatherForecast> {
   Future<WeatherForecastModel> forecastObject;
-  String _cityName = "Pulau Pinang";
+  String _cityName = "Sydney";
 
   @override
   void initState() {
@@ -36,14 +36,16 @@ class _WeatherForecastState extends State<WeatherForecast> {
         centerTitle: true,
         title: Text("Weather Forecast"),
       ),
+
       // Note: ListView for scrollable capability.
       body: ListView(
-        // Create widget piece by piece.
         children: <Widget>[
+          // - Text field
           textFieldView(),
+
+          // - Weather forecast
           Container(
             margin: EdgeInsets.all(10.0),
-//            color: Colors.white,
             child: FutureBuilder<WeatherForecastModel>(
               future: forecastObject,
               builder: (BuildContext context,
@@ -51,52 +53,22 @@ class _WeatherForecastState extends State<WeatherForecast> {
                 print("TEST ${snapshot.data}");
 
                 if (snapshot.hasData) {
-                  switch (snapshot.data.cod) {
-                    case "200": // Show weather forecast for selected city.
-                      return Column(
-                        children: <Widget>[
-//                        midView(snapshot),
-//                        bottomView(snapshot, context),
-                          MidView(snapshot: snapshot),
-                          BottomView(snapshot: snapshot),
-                        ],
-                      );
+                  final int _statusCode = int.parse(snapshot.data.cod);
 
-                    case "400": // Prompt enter city name.
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Center(
-                          child: Text(
-                            "Please enter city name.",
-                            style: TextStyle(
-                              color: Theme.of(context).errorColor,
-                            ),
-                          ),
-                        ),
-                      );
-
-                    case "404": // City not found.
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Center(
-                          child: Text(
-                            "The city \"${snapshot.data.city.name}\" "
-                            "cannot be found!",
-                            style: TextStyle(
-                              color: Theme.of(context).errorColor,
-                            ),
-                          ),
-                        ),
-                      );
-
-                    default: // Other errors
-                      return Text("Error getting weather forecast data.");
+                  if (_statusCode == NetworkStatusCode.success) {
+                    return Column(
+                      children: <Widget>[
+                        MidView(snapshot: snapshot),
+                        BottomView(snapshot: snapshot),
+                      ],
+                    );
+                  } else {
+                    return ErrorView(snapshot: snapshot);
                   }
                 } else {
                   return Container(
                     child: Center(
                       child: CircularProgressIndicator(),
-//                        child: Text("Error: City not found!")),
                     ),
                   );
                 }
@@ -109,28 +81,31 @@ class _WeatherForecastState extends State<WeatherForecast> {
   }
 
   Widget textFieldView() {
-    // Define text editing controller to enable clear text.
     final _controller = TextEditingController();
 
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
-//        color: Colors.white,
         child: TextField(
+          // - Define text editing controller to enable clear text.
           controller: _controller,
+
+          // - Text field decoration.
           decoration: InputDecoration(
-            hintText: "Enter city name",
-            prefixIcon: Icon(Icons.search),
-            // Note: Clear button.
-            suffixIcon: IconButton(
-              onPressed: () => _controller.clear(),
-              icon: Icon(Icons.clear),
-            ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
             contentPadding: EdgeInsets.all(8.0),
+            hintText: "Enter city name",
+            prefixIcon: Icon(Icons.search),
+            suffixIcon: IconButton(
+              // Note: Clear button.
+              onPressed: () => _controller.clear(),
+              icon: Icon(Icons.clear),
+            ),
           ),
+
+          // - Search weather forecast data.
           onSubmitted: (value) {
             _controller.text = value;
             setState(() {

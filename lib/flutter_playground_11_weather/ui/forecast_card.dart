@@ -1,16 +1,16 @@
 // Section 22: Build a Weather Forecast App
 
 import 'package:flutter/material.dart';
-import 'package:flutterapp0803/flutter_playground_11_weather/model/weather_forecast_model.dart';
-import 'package:flutterapp0803/flutter_playground_11_weather/util/convert_icon.dart';
-import 'package:flutterapp0803/flutter_playground_11_weather/util/forecast_util.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutterapp0803/flutter_playground_11_weather/model/weather_forecast_model.dart';
+import 'package:flutterapp0803/flutter_playground_11_weather/util/forecast_util.dart';
+import 'view/mid_view.dart';
 
-enum TemperatureInfo {
-  tempMax,
-  tempMin,
-  humidity,
-  windSpeed,
+class ForecastCardInfo {
+  static const int tempMax = 1;
+  static const int tempMin = 2;
+  static const int humidity = 3;
+  static const int windSpeed = 4;
 }
 
 Widget buildForecastCard(
@@ -42,6 +42,7 @@ Widget buildForecastCard(
         ),
       ),
 
+      // Divider
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
         child: Container(
@@ -81,34 +82,22 @@ Widget buildForecastCard(
               children: <Widget>[
                 // Max temperature
                 buildFutureInfoRow(
-                    forecast: forecast, info: TemperatureInfo.tempMax),
+                    forecast: forecast, info: ForecastCardInfo.tempMax),
                 SizedBox(height: 1.0),
 
                 // Min temperature
                 buildFutureInfoRow(
-                    forecast: forecast, info: TemperatureInfo.tempMin),
+                    forecast: forecast, info: ForecastCardInfo.tempMin),
                 SizedBox(height: 1.0),
 
                 // Humidity
-                // - Method 1:
-//                Text(
-//                  "Hum: ${forecast.main.humidity.toStringAsFixed(1)} %",
-//                  style: getWeatherInfoTextStyle(),
-//                ),
-                // - Method 2
                 buildFutureInfoRow(
-                    forecast: forecast, info: TemperatureInfo.humidity),
+                    forecast: forecast, info: ForecastCardInfo.humidity),
                 SizedBox(height: 1.0),
 
                 // Wind speed
-                // - Method 1
-//                Text(
-//                  "Win: ${forecast.wind.speed.toStringAsFixed(1)} mi/h",
-//                  style: getWeatherInfoTextStyle(),
-//                ),
-                // - Method 2
                 buildFutureInfoRow(
-                    forecast: forecast, info: TemperatureInfo.windSpeed),
+                    forecast: forecast, info: ForecastCardInfo.windSpeed),
               ],
             ),
           ),
@@ -118,28 +107,33 @@ Widget buildForecastCard(
   );
 }
 
-Row buildFutureInfoRow({ListA forecast, TemperatureInfo info}) {
+Widget buildFutureInfoRow({ListA forecast, int info}) {
   IconData iconData = Icons.arrow_upward;
-  String tempReading = "";
+  String reading = "";
+  String unit = "";
 
   switch (info) {
-    case TemperatureInfo.tempMax:
+    case ForecastCardInfo.tempMax:
 //      iconData = Icons.arrow_upward;
       iconData = FontAwesomeIcons.solidArrowAltCircleUp;
-      tempReading = "${forecast.main.tempMax.toStringAsFixed(1)}°F";
+      unit = Util.getUnitFor(Measurement.temperature);
+      reading = "${forecast.main.tempMax.toStringAsFixed(1)}$unit";
       break;
-    case TemperatureInfo.tempMin:
+    case ForecastCardInfo.tempMin:
 //      iconData = Icons.arrow_downward;
       iconData = FontAwesomeIcons.solidArrowAltCircleDown;
-      tempReading = "${forecast.main.tempMin.toStringAsFixed(1)}°F";
+      unit = Util.getUnitFor(Measurement.temperature);
+      reading = "${forecast.main.tempMin.toStringAsFixed(1)}$unit";
       break;
-    case TemperatureInfo.humidity:
+    case ForecastCardInfo.humidity:
       iconData = FontAwesomeIcons.solidGrinBeamSweat;
-      tempReading = "${forecast.main.humidity.toStringAsFixed(1)} %";
+      unit = Util.getUnitFor(Measurement.humidity);
+      reading = "${forecast.main.humidity.toStringAsFixed(1)} $unit";
       break;
-    case TemperatureInfo.windSpeed:
+    case ForecastCardInfo.windSpeed:
       iconData = FontAwesomeIcons.wind;
-      tempReading = "${forecast.wind.speed.toStringAsFixed(1)} mi/h";
+      unit = Util.getUnitFor(Measurement.windSpeed);
+      reading = "${forecast.wind.speed.toStringAsFixed(1)} $unit";
   }
 
   return Row(
@@ -147,15 +141,6 @@ Row buildFutureInfoRow({ListA forecast, TemperatureInfo info}) {
     children: <Widget>[
       Padding(
         padding: const EdgeInsets.only(right: 5.0),
-//        child: CircleAvatar(
-//          radius: 8.0,
-//          backgroundColor: Colors.white.withOpacity(0.75),
-//          child: Icon(
-//            iconData,
-//            size: 12.0,
-//            color: Colors.black,
-//          ),
-//        ),
         child: Icon(
           iconData,
           size: 12.0,
@@ -163,7 +148,7 @@ Row buildFutureInfoRow({ListA forecast, TemperatureInfo info}) {
         ),
       ),
       Text(
-        tempReading,
+        reading,
         style: getWeatherInfoTextStyle(),
       ),
     ],
