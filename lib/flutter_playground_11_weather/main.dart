@@ -33,8 +33,10 @@ ThemeData _appTheme = mainTheme.copyWith(
 );
 
 getCardTheme() {
-  return mainTheme.cardTheme
-      .copyWith(color: primaryColor, shadowColor: primaryColorDark);
+  return mainTheme.cardTheme.copyWith(
+    color: primaryColor,
+    shadowColor: primaryColorDark,
+  );
 }
 
 getIconTheme() {
