@@ -113,13 +113,15 @@ class Properties {
   String place;
   int time;
   int updated;
-  Null tz;
+//  Null tz;
+  String tz;
   String url;
   String detail;
   int felt;
   double cdi;
   double mmi;
-  Null alert;
+//  Null alert;
+  String alert;
   String status;
   int tsunami;
   int sig;
