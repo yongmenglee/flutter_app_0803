@@ -10,7 +10,7 @@
         android:label="flutterapp0803"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-        android:value="ENTER_YOUR_OWN_GOOGLE_MAPS_API_KEY"/>
+        android:value="AIzaSyDUrsMi9LWeDxwiSLx1iTaBEwgcIIB7D6o"/>
 <!--&lt;!&ndash;    Always change this back to your own-->
         <activity
             android:name=".MainActivity"
