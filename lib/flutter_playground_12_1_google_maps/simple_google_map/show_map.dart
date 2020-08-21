@@ -45,6 +45,8 @@ class _ShowSimpleMapState extends State<ShowSimpleMap> {
   // Camera Position
   static final CameraPosition intelPosition = CameraPosition(
     target: _latLngIntel,
+    bearing: 191.789,
+    tilt: 34.89,
     zoom: 14.780,
   );
 
@@ -76,11 +78,6 @@ class _ShowSimpleMapState extends State<ShowSimpleMap> {
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
-
-//  Future<void> _goToIntel() async {
-//    final GoogleMapController controller = await mapController;
-//    controller.animateCamera(CameraUpdate.newCameraPosition(intelPosition),);
-//  }
 
   Future<void> _goToIntel() async {
     final GoogleMapController controller = await mapController;
