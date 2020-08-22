@@ -1,8 +1,11 @@
-import 'package:flutter/material.dart';
-//import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+// Section 24: Firestore - Realtime Database - Build a Community Board App
 
-//FirebaseApp.initializeApp();
+import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'ui/custom_card.dart';
+import 'util/board_util.dart';
 
 class BoardApp extends StatefulWidget {
   @override
@@ -12,10 +15,10 @@ class BoardApp extends StatefulWidget {
 class _BoardAppState extends State<BoardApp> {
   // Currently it works (20200821)
   var firestoreDb = Firestore.instance.collection("board").snapshots();
+  BuildContext context;
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Community Board"),
@@ -23,14 +26,24 @@ class _BoardAppState extends State<BoardApp> {
       body: StreamBuilder(
         stream: firestoreDb,
         builder: (context, snapshot) {
-          if (!snapshot.hasData) return CircularProgressIndicator();
+          if (!snapshot.hasData)
+            return Center(child: CircularProgressIndicator());
 
+          this.context = context;
           return ListView.builder(
-              itemCount: snapshot.data.documents.length,
-              itemBuilder: (context, int index) {
-                return Text(snapshot.data.documents[index]['description']);
-              });
+            itemCount: snapshot.data.documents.length,
+            itemBuilder: (context, int index) {
+              return CustomCard(
+                  snapshot: snapshot.data, index: index, context: context);
+            },
+          );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Util.showAddDialog(this.context);
+        },
+        child: Icon(FontAwesomeIcons.pen),
       ),
     );
   }
