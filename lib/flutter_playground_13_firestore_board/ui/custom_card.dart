@@ -1,11 +1,10 @@
 // Section 24: Firestore - Realtime Database - Build a Community Board App
 
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:flutterapp0803/flutter_playground_13_firestore_board/util/board_util.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-
-import 'package:flutterapp0803/flutter_playground_13_firestore_board/util/board_util.dart';
 
 class CustomCard extends StatelessWidget {
   // Google "QuerySnapshot + firestore"
@@ -13,11 +12,7 @@ class CustomCard extends StatelessWidget {
   final QuerySnapshot snapshot;
   final int index;
 
-  const CustomCard(
-      {Key key,
-      this.scaffoldContext,
-      this.snapshot,
-      this.index})
+  const CustomCard({Key key, this.scaffoldContext, this.snapshot, this.index})
       : super(key: key);
 
   @override
@@ -44,6 +39,7 @@ class CustomCard extends StatelessWidget {
       children: [
         Container(
           height: 140.0,
+          width: MediaQuery.of(context).size.width,
           child: Card(
             elevation: 9.0,
             child: Column(
@@ -53,8 +49,16 @@ class CustomCard extends StatelessWidget {
                     Container(
                       width: MediaQuery.of(scaffoldContext).size.width - 100.0,
                       child: ListTile(
-                        title: Text(_dispTitle),
-                        subtitle: Text(_dispDesc),
+                        title: Text(
+                          _dispTitle,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
+                        subtitle: Text(
+                          _dispDesc,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 3,
+                        ),
                         leading: CircleAvatar(
                           radius: 34.0,
                           child: Text(_dispTitle[0]),
@@ -69,7 +73,16 @@ class CustomCard extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text("By $_dispName"),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.6,
+                        child: Text(
+                          "By: $_dispName",
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                      SizedBox(width: 2.0),
                       Text(
                         " ($_dispDate)",
                         style: TextStyle(fontStyle: FontStyle.italic),
@@ -116,7 +129,8 @@ class CustomCard extends StatelessWidget {
       case UserAction.delete:
         _iconData = FontAwesomeIcons.trashAlt;
         _iconAction = () {
-          Util.deleteRecord(scaffoldContext, snapshot.documentID);
+//          Util.deleteRecord(scaffoldContext, snapshot.documentID);
+          Util.showConfirmDeleteDialog(scaffoldContext, snapshot);
         };
         break;
 

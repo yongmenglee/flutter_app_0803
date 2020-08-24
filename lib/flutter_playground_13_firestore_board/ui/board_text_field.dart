@@ -1,5 +1,3 @@
-//import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp0803/flutter_playground_13_firestore_board/util/board_util.dart';
@@ -8,7 +6,6 @@ class BoardTextField extends StatefulWidget {
   final BuildContext scaffoldContext;
   final DocumentSnapshot snapshot;
   final String field;
-  final int userAction;
   final TextEditingController controller;
   final FocusNode currentNode;
   final FocusNode nextNode;
@@ -18,32 +15,26 @@ class BoardTextField extends StatefulWidget {
       this.scaffoldContext,
       this.snapshot,
       this.field,
-      this.userAction,
       this.controller,
       this.currentNode,
       this.nextNode})
       : super(key: key);
 
-//  const BoardTextField(this.scaffoldContext, this.snapshot,
-//      this.controller, this.currentNode, this.nextNode)
-//      : super(key: key);
-
   @override
-  _BoardTextFieldState createState() => _BoardTextFieldState(scaffoldContext,
-      snapshot, field, userAction, controller, currentNode, nextNode);
+  _BoardTextFieldState createState() => _BoardTextFieldState(
+      scaffoldContext, snapshot, field, controller, currentNode, nextNode);
 }
 
 class _BoardTextFieldState extends State<BoardTextField> {
   final BuildContext scaffoldContext;
   final DocumentSnapshot snapshot;
   final String field;
-  final int userAction;
   final TextEditingController controller;
   final FocusNode currentNode;
   final FocusNode nextNode;
 
   _BoardTextFieldState(this.scaffoldContext, this.snapshot, this.field,
-      this.userAction, this.controller, this.currentNode, this.nextNode);
+      this.controller, this.currentNode, this.nextNode);
 
   bool _textFieldIsEmpty = false;
 
@@ -54,18 +45,21 @@ class _BoardTextFieldState extends State<BoardTextField> {
         controller: controller,
         focusNode: currentNode,
         keyboardType: TextInputType.text,
-        textInputAction: TextInputAction.next,
+        textInputAction:
+            (nextNode == null) ? TextInputAction.done : TextInputAction.next,
         autofocus: true,
         autocorrect: true,
         decoration: InputDecoration(
           labelText: _getLabelText(field),
           errorText: _textFieldIsEmpty ? _getErrorText(field) : null,
         ),
-        onSubmitted: (val) {
+        onChanged: (val) {
           setState(() {
-            _textFieldIsEmpty = (val == null || val == "");
+            Util.record[field] = controller.text;
+            _textFieldIsEmpty = (val == null || val.isEmpty);
           });
-
+        },
+        onSubmitted: (val) {
           currentNode.unfocus();
           if (nextNode != null) {
             nextNode.requestFocus();
