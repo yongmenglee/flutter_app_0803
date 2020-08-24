@@ -15,13 +15,28 @@ class BoardApp extends StatefulWidget {
 class _BoardAppState extends State<BoardApp> {
   // Currently it works (20200821)
   var firestoreDb = Firestore.instance.collection("board").snapshots();
-  BuildContext context;
+
+  /// Testing
+  BuildContext appContext;
+
+  /// The scaffold context to be used throughout the app.
+  BuildContext scaffoldContext;
 
   @override
   Widget build(BuildContext context) {
+    appContext = context;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Community Board"),
+        actions: [
+          IconButton(
+            icon: Icon(FontAwesomeIcons.pen),
+            onPressed: () {
+              Util.showAddDialog(scaffoldContext);
+            },
+          ),
+        ],
       ),
       body: StreamBuilder(
         stream: firestoreDb,
@@ -29,21 +44,22 @@ class _BoardAppState extends State<BoardApp> {
           if (!snapshot.hasData)
             return Center(child: CircularProgressIndicator());
 
-          this.context = context;
+          // Important: Assign [context] to [scaffoldContext].
+          scaffoldContext = context;
+
+          print("Hello$appContext");
+          print("Hello$scaffoldContext");
+
           return ListView.builder(
             itemCount: snapshot.data.documents.length,
             itemBuilder: (context, int index) {
               return CustomCard(
-                  snapshot: snapshot.data, index: index, context: context);
+                  scaffoldContext: scaffoldContext,
+                  snapshot: snapshot.data,
+                  index: index);
             },
           );
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Util.showAddDialog(this.context);
-        },
-        child: Icon(FontAwesomeIcons.pen),
       ),
     );
   }

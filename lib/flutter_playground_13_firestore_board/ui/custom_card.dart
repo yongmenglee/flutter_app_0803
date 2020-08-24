@@ -9,11 +9,15 @@ import 'package:flutterapp0803/flutter_playground_13_firestore_board/util/board_
 
 class CustomCard extends StatelessWidget {
   // Google "QuerySnapshot + firestore"
+  final BuildContext scaffoldContext;
   final QuerySnapshot snapshot;
   final int index;
-  final BuildContext context;
 
-  const CustomCard({Key key, this.snapshot, this.index, this.context})
+  const CustomCard(
+      {Key key,
+      this.scaffoldContext,
+      this.snapshot,
+      this.index})
       : super(key: key);
 
   @override
@@ -47,7 +51,7 @@ class CustomCard extends StatelessWidget {
                 Stack(
                   children: [
                     Container(
-                      width: MediaQuery.of(context).size.width - 100.0,
+                      width: MediaQuery.of(scaffoldContext).size.width - 100.0,
                       child: ListTile(
                         title: Text(_dispTitle),
                         subtitle: Text(_dispDesc),
@@ -97,8 +101,7 @@ class CustomCard extends StatelessWidget {
   Widget _buildDeleteIcon(DocumentSnapshot snapshot) =>
       _buildIcons(UserAction.delete, snapshot: snapshot);
 
-  Widget _buildIcons(int userAction,
-      {DocumentSnapshot snapshot}) {
+  Widget _buildIcons(int userAction, {DocumentSnapshot snapshot}) {
     IconData _iconData;
     Function() _iconAction;
 
@@ -106,14 +109,14 @@ class CustomCard extends StatelessWidget {
       case UserAction.update:
         _iconData = FontAwesomeIcons.edit;
         _iconAction = () {
-          Util.showUpdateDialog(this.context, snapshot);
+          Util.showUpdateDialog(scaffoldContext, snapshot);
         };
         break;
 
       case UserAction.delete:
         _iconData = FontAwesomeIcons.trashAlt;
         _iconAction = () {
-          Util.deleteRecord(this.context, snapshot.documentID);
+          Util.deleteRecord(scaffoldContext, snapshot.documentID);
         };
         break;
 

@@ -3,7 +3,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-
 class Fields {
   static const String name = "name";
   static const String title = "title";
@@ -27,94 +26,164 @@ class Util {
   static TextEditingController _descriptionInputController =
       new TextEditingController();
 
+  static final FocusNode _nameNode = new FocusNode();
+  static final FocusNode _titleNode = new FocusNode();
+  static final FocusNode _descriptionNode = new FocusNode();
+
   static BuildContext _context;
 
-  static showAddDialog(BuildContext context) =>
-      _showBoardFormDialog(context, UserAction.add);
+  static showAddDialog(BuildContext scaffoldContext) =>
+      _showBoardFormDialog(scaffoldContext, UserAction.add);
 
-  static showUpdateDialog(BuildContext context, DocumentSnapshot snapshot) =>
-      _showBoardFormDialog(context, UserAction.update, snapshot);
+  static showUpdateDialog(
+          BuildContext scaffoldContext, DocumentSnapshot snapshot) =>
+      _showBoardFormDialog(scaffoldContext, UserAction.update, snapshot);
 
-  static _showBoardFormDialog(BuildContext context, int userAction,
+  static _showBoardFormDialog(BuildContext scaffoldContext, int userAction,
       [DocumentSnapshot snapshot]) async {
-    _context = context;
+    _context = scaffoldContext;
 
-    String _formTitle = "Please fill out the form.";
-    String _buttonTwoLabel = "Save".toUpperCase();
+    String _formTitle = "Add".toUpperCase();
+    String _formMessage = "Please fill out the form.";
 
     switch (userAction) {
       case UserAction.update:
-        _formTitle = "Please fill out the form to update.";
-        _buttonTwoLabel = "Update".toUpperCase();
+        _formTitle = "Update".toUpperCase();
+        _formMessage = "Please fill out the form to update.";
         break;
 
       default:
         break;
     }
 
+//    await showDialog(
+//      context: scaffoldContext,
+//      child: AlertDialog(
+//        contentPadding: EdgeInsets.all(10.0),
+//        actionsOverflowDirection: VerticalDirection.up,
+//        title: Text(_formTitle),
+//        content: SingleChildScrollView(
+//          child: Container(
+//            height: 200.0,
+////            width: MediaQuery.of(context).size.width,
+////            width: 200.0,
+//            child: Column(
+//              mainAxisAlignment: MainAxisAlignment.center,
+//              crossAxisAlignment: CrossAxisAlignment.start,
+//              children: [
+//                Text(_formMessage),
+//                _buildNameTextField(userAction, snapshot),
+//                _buildTitleTextField(userAction, snapshot),
+//                _buildDescriptionTextField(userAction, snapshot),
+//              ],
+//            ),
+//          ),
+//        ),
+//        actions: [
+//          _buttonOne(scaffoldContext),
+//          _buttonTwo(scaffoldContext, userAction, snapshot),
+//        ],
+//      ),
+//    );
     await showDialog(
-      context: context,
-      child: AlertDialog(
-        contentPadding: EdgeInsets.all(10.0),
-        content: Container(
-          height: 200.0,
-          child: Column(
-            children: [
-              Text(_formTitle),
-              _buildNameTextField(userAction, snapshot),
-              _buildTitleTextField(userAction, snapshot),
-              _buildDescriptionTextField(userAction, snapshot),
-            ],
-          ),
-        ),
-        actions: [
-          _buttonOne(context),
-          _buttonTwo(context, userAction, snapshot),
-        ],
-      ),
-    );
+        context: scaffoldContext,
+        builder: (context) {
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return AlertDialog(
+                contentPadding: EdgeInsets.all(10.0),
+                actionsOverflowDirection: VerticalDirection.up,
+                title: Text(_formTitle),
+                content: SingleChildScrollView(
+                  child: Container(
+                    height: 200.0,
+//            width: MediaQuery.of(context).size.width,
+//            width: 200.0,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(_formMessage),
+                        _buildNameTextField(
+                            userAction, context, snapshot, setState),
+                        _buildTitleTextField(
+                            userAction, context, snapshot, setState),
+                        _buildDescriptionTextField(
+                            userAction, context, snapshot, setState),
+                      ],
+                    ),
+                  ),
+                ),
+                actions: [
+                  _buttonOne(scaffoldContext),
+                  _buttonTwo(scaffoldContext, userAction, snapshot),
+                ],
+              );
+            },
+          );
+        });
   }
   // endregion
 
   // region Text fields
-  static Widget _buildNameTextField(int action, DocumentSnapshot snapshot) =>
-      _buildTextField(Fields.name, action, snapshot);
+  static Widget _buildNameTextField(int action, BuildContext context,
+          DocumentSnapshot snapshot, Function(Function()) setState) =>
+      _buildTextField(Fields.name, action, context, snapshot, setState);
 
-  static Widget _buildTitleTextField(int action, DocumentSnapshot snapshot) =>
-      _buildTextField(Fields.title, action, snapshot);
+  static Widget _buildTitleTextField(int action, BuildContext context,
+          DocumentSnapshot snapshot, Function(Function()) setState) =>
+      _buildTextField(Fields.title, action, context, snapshot, setState);
 
-  static Widget _buildDescriptionTextField(
-          int action, DocumentSnapshot snapshot) =>
-      _buildTextField(Fields.description, action, snapshot);
+  static Widget _buildDescriptionTextField(int action, BuildContext context,
+          DocumentSnapshot snapshot, Function(Function()) setState) =>
+      _buildTextField(Fields.description, action, context, snapshot, setState);
 
   static Expanded _buildTextField(
-      String field, int userAction, DocumentSnapshot snapshot) {
+      String field,
+      int userAction,
+      BuildContext context,
+      DocumentSnapshot snapshot,
+      Function(Function()) setState) {
     String _textFieldLabel;
+//    String _textFieldError;
     TextEditingController _selectedController;
+    FocusNode _currentNode;
+    FocusNode _nextNode;
+    TextInputAction _textInputAction = TextInputAction.next;
+//    bool _textFieldIsEmpty = false;
 
     switch (field) {
       case Fields.name:
         _textFieldLabel = "Your Name*";
+//        _textFieldError = "Please enter your name.";
         _selectedController = _nameInputController;
         _selectedController.text = (userAction == UserAction.update)
             ? denullify(snapshot.data[Fields.name])
             : "";
+        _currentNode = _nameNode;
+        _nextNode = _titleNode;
         break;
 
       case Fields.title:
         _textFieldLabel = "Title*";
+//        _textFieldError = "Please enter title.";
         _selectedController = _titleInputController;
         _selectedController.text = (userAction == UserAction.update)
             ? denullify(snapshot.data[Fields.title])
             : "";
+        _currentNode = _titleNode;
+        _nextNode = _descriptionNode;
         break;
 
       case Fields.description:
         _textFieldLabel = "Description*";
+//        _textFieldError = "Please enter description.";
         _selectedController = _descriptionInputController;
         _selectedController.text = (userAction == UserAction.update)
             ? denullify(snapshot.data[Fields.description])
             : "";
+        _currentNode = _descriptionNode;
+        _textInputAction = TextInputAction.done;
         break;
 
       default:
@@ -123,24 +192,43 @@ class Util {
 
     return Expanded(
       child: TextField(
-        autofocus: true,
-        autocorrect: true,
-        decoration: InputDecoration(labelText: _textFieldLabel),
         controller: _selectedController,
+        focusNode: _currentNode,
+        keyboardType: TextInputType.text,
+        textInputAction: _textInputAction,
+        autofocus: (_currentNode == _nameNode),
+        autocorrect: true,
+        decoration: InputDecoration(
+          labelText: _textFieldLabel,
+//          errorText: _textFieldIsEmpty ? _textFieldError : null,
+        ),
+        onSubmitted: (value) {
+//          setState(() {
+//            _selectedController.text = value;
+//            _textFieldIsEmpty = (value == null || value == "");
+//          });
+//          if (value.isEmpty) {
+//            _textFieldIsEmpty = true;
+//          }
+          _currentNode.unfocus();
+          if (_nextNode != null) {
+            _nextNode.requestFocus();
+          }
+        },
       ),
     );
   }
   // endregion
 
   // region Action buttons
-  static FlatButton _buttonOne(BuildContext context) =>
-      _buildActionButton(context, UserAction.cancel);
+  static FlatButton _buttonOne(BuildContext scaffoldContext) =>
+      _buildActionButton(scaffoldContext, UserAction.cancel);
 
-  static FlatButton _buttonTwo(BuildContext context, int userAction,
+  static FlatButton _buttonTwo(BuildContext scaffoldContext, int userAction,
           [DocumentSnapshot snapshot]) =>
-      _buildActionButton(context, userAction, snapshot);
+      _buildActionButton(scaffoldContext, userAction, snapshot);
 
-  static FlatButton _buildActionButton(BuildContext context, int action,
+  static FlatButton _buildActionButton(BuildContext scaffoldContext, int action,
       [DocumentSnapshot snapshot]) {
     Function() _buttonAction;
     String _buttonLabel;
@@ -152,16 +240,15 @@ class Util {
         break;
 
       case UserAction.add:
-//        _buttonAction = addRecord;
         _buttonAction = () {
-          addRecord(context);
+          addRecord(scaffoldContext);
         };
         _buttonLabel = "Save";
         break;
 
       case UserAction.update:
         _buttonAction = () {
-          updateRecord(context, snapshot.documentID);
+          updateRecord(scaffoldContext, snapshot.documentID);
         };
         _buttonLabel = "Update";
         break;
@@ -259,7 +346,7 @@ class Util {
     String snackBarMessage;
     Color snackBarColor;
 
-    switch(userAction) {
+    switch (userAction) {
       case UserAction.add:
         snackBarMessage = "New record added successfully.";
         snackBarColor = Colors.green;
@@ -288,6 +375,20 @@ class Util {
     Scaffold.of(context).showSnackBar(snackBar);
   }
 }
+
+
+class BoardTextField extends StatefulWidget {
+  @override
+  _BoardTextFieldState createState() => _BoardTextFieldState();
+}
+
+class _BoardTextFieldState extends State<BoardTextField> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
 
 String denullify(dynamic val) {
   if (val == null) return "-";
